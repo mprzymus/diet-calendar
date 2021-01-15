@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Skladnik {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne

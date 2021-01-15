@@ -12,13 +12,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Pacjent {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@OneToOne
 	private Kalendarz kalendarz;
 
 	@ManyToOne
+	@JoinColumn(name = "dietetykid")
 	private Dietetyk dietetyk;
 
 	@Enumerated(value = EnumType.ORDINAL)

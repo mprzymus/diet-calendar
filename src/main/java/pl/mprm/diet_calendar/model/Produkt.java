@@ -12,11 +12,14 @@ import java.util.*;
 @NoArgsConstructor
 public class Produkt {
 	@Id
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@OneToMany
-	private Collection<Makroskladnik> makroskladniki;
+	private Collection<Makroskladnik> makroskladniki = new HashSet<>();
+
+	@OneToMany
+	private Collection<Mikroskladnik> mikroskladniki = new HashSet<>();
 
 	private Double kalorycznosc;
 	private String nazwa;
@@ -24,6 +27,6 @@ public class Produkt {
 	private String opis;
 
 	@Column(name = "czy_pelnowartosciowy")
-	private Boolean czyPelnowartosciowy;
+	private Boolean czy_pelnowartosciowy;
 
 }

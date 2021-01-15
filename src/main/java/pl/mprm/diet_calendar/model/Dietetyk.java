@@ -14,7 +14,7 @@ import java.util.HashSet;
 public class Dietetyk {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@OneToMany

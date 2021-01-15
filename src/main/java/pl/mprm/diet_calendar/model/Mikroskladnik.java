@@ -11,12 +11,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Mikroskladnik {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(targetEntity = Produkt.class)
+	@JoinColumn(name = "produktid")
 	private Produkt produkt;
 
 	private String nazwa;
-	private String ilosc;
+	private Double ilosc;
 }

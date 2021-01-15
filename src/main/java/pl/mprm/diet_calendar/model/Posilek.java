@@ -12,10 +12,11 @@ import java.util.*;
 @NoArgsConstructor
 public class Posilek {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne
+	@JoinColumn(name = "jadlospisid")
 	private Jadlospis jadlospis;
 
 	@OneToMany

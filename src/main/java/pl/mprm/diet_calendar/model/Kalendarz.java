@@ -12,13 +12,13 @@ import java.util.*;
 @Entity
 public class Kalendarz {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@OneToOne
 	private Pacjent pacjent;
 	@OneToMany
-	private Collection<Jadlospis> jadlospisy;
+	private Collection<Jadlospis> jadlospisy = new HashSet<>();
 	private String nazwaKalendarza;
 
 	@Column(name = "czy_aktywne")

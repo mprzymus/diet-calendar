@@ -13,13 +13,14 @@ import java.util.*;
 @Entity
 public class Jadlospis {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
 	private Kalendarz kalendarz;
 
 	@OneToMany
 	private Collection<Posilek> posilki = new HashSet<>();
+
 	private Date data;
 	private Double deficytKaloryczny;
 
