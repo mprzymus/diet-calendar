@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/patient/**").hasAnyRole(PATIENT_USER_ROLE, DIETITIAN_USER_ROLE)
-                .antMatchers("/dietician/**").hasRole(DIETITIAN_USER_ROLE)
+                .antMatchers("/dietitian/**").hasRole(DIETITIAN_USER_ROLE)
                 .antMatchers("/h2-console/**").permitAll()
                 .and().csrf().ignoringAntMatchers("/h2-console/**")
                 .and().headers().frameOptions().sameOrigin()
