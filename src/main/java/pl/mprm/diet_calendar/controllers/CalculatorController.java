@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CalculatorController {
-    @GetMapping("/calc")
+    @GetMapping("/open/calc")
     public String dietCalculator() {
         return "calcform";
     }
