@@ -15,10 +15,10 @@ public class Produkt {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produkt")
 	private Collection<Makroskladnik> makroskladniki = new HashSet<>();
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produkt")
 	private Collection<Mikroskladnik> mikroskladniki = new HashSet<>();
 
 	private Double kalorycznosc;
