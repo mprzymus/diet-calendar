@@ -14,9 +14,9 @@ public class Makroskladnik {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(targetEntity = Produkt.class)
+	@ManyToOne(targetEntity = Product.class)
 	@JoinColumn(name = "produktid")
-	private Produkt produkt;
+	private Product product;
 
 	private String nazwa;
 	private Double ilosc;

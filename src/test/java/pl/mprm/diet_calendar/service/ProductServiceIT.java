@@ -5,14 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mprm.diet_calendar.dao.ProductRepository;
 import pl.mprm.diet_calendar.model.Makroskladnik;
 import pl.mprm.diet_calendar.model.Mikroskladnik;
-import pl.mprm.diet_calendar.model.Produkt;
+import pl.mprm.diet_calendar.model.Product;
 
 import java.util.Set;
 
@@ -37,7 +36,7 @@ public class ProductServiceIT {
     @Transactional
     @Test
     void saveWithProductWithElementsTest() {
-        var prod = new Produkt();
+        var prod = new Product();
         var microElement1 = new Mikroskladnik();
         var microElement2 = new Mikroskladnik();
 

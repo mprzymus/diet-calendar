@@ -10,15 +10,16 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Produkt {
+@Table(name = "Produkt")
+public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produkt")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private Collection<Makroskladnik> makroskladniki = new HashSet<>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produkt")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private Collection<Mikroskladnik> mikroskladniki = new HashSet<>();
 
 	private Double kalorycznosc;

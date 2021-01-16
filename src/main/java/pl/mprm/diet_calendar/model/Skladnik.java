@@ -18,6 +18,6 @@ public class Skladnik {
 	private Posilek danie;
 
 	@ManyToOne
-	private Produkt produkty;
+	private Product produkty;
 	private Double ilosc;
 }

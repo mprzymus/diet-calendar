@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.mprm.diet_calendar.dao.ProductRepository;
-import pl.mprm.diet_calendar.model.Produkt;
+import pl.mprm.diet_calendar.model.Product;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,9 +36,9 @@ class ProductServiceTest {
 
     @Test
     void findAllProductsTest() {
-        var prod1 = new Produkt();
+        var prod1 = new Product();
         prod1.setId(1L);
-        var prod2 = new Produkt();
+        var prod2 = new Product();
         prod2.setId(2L);
 
         when(productRepository.findAll()).thenReturn(List.of(prod1, prod2));

@@ -8,7 +8,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import pl.mprm.diet_calendar.dao.ProductRepository;
 import pl.mprm.diet_calendar.model.Mikroskladnik;
-import pl.mprm.diet_calendar.model.Produkt;
+import pl.mprm.diet_calendar.model.Product;
 
 @Profile("dev")
 @Slf4j
@@ -21,7 +21,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         log.info("Adding data to db");
-        var product = new Produkt();
+        var product = new Product();
         product.setOpis("desc");
         product.setNazwa("name");
         product.setCzy_pelnowartosciowy(false);
@@ -31,10 +31,10 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         var micro = new Mikroskladnik();
         micro.setNazwa("micro");
         micro.setIlosc(10.4);
-        micro.setProdukt(product);
+        micro.setProduct(product);
         product.getMikroskladniki().add(micro);
         repository.save(product);
-        product = new Produkt();
+        product = new Product();
         repository.save(product);
     }
 }
