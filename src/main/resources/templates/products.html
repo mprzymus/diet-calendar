@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+    <h1 th:text="'Hello, ' +  ${userName}"></h1>
+    <ol>
+        <!--@thymesVar id="product" type="pl.mprm.diet_calendar.model.Produkt"-->
+        <li th:each="product: ${products}" th:text="${product.getId()}"></li>
+    </ol>
+</body>
+</html>
