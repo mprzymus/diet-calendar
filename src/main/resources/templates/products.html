@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <title>Products</title>
 </head>
+
 <body>
-    <h1 th:text="'Hello, ' +  ${userName}"></h1>
-    <ol>
-        <!--@thymesVar id="product" type="pl.mprm.diet_calendar.model.Produkt"-->
-        <li th:each="product: ${products}" th:text="${product.getId()}"></li>
-    </ol>
+<h1 th:text="'Hello, ' +  ${userName}"></h1>
+<ol>
+    <li th:each="product: ${products}">
+        <!--@thymesVar id="product" type="pl.mprm.diet_calendar.model.product_data.Product"-->
+        <form action="#" method="POST" th:action="@{/dietitian/products}" th:object="${product}">
+            <input type="hidden" th:value="*{id}"/>
+            <input type="text" th:value="*{nazwa}"/>
+            <input type="text" th:value="*{gramatura}"/>
+            <input type="text" th:value="*{kalorycznosc}"/>
+            <input type="text" th:value="*{opis}"/>
+            <input type="text" th:value="*{mikroskladniki}"/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </li>
+</ol>
 </body>
 </html>
