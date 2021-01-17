@@ -48,8 +48,8 @@ class ProductToProductCommandTest {
 
         var result = tested.convert(product);
 
-        assertEquals("", result.getMikroskladniki());
-        assertEquals("", result.getMakroskladniki());
+        assertTrue(result.getMikroskladniki().isBlank());
+        assertTrue(result.getMakroskladniki().isBlank());
         assertEquals(1, result.getId());
     }
 
