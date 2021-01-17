@@ -2,6 +2,7 @@ package pl.mprm.diet_calendar.controllers.product;
 
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
 import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
 import pl.mprm.diet_calendar.model.product_data.Product;
@@ -11,6 +12,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Component
 public class ProductCommandToProduct implements Converter<ProductCommand, Product> {
 
     @Synchronized

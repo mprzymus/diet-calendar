@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.mprm.diet_calendar.model.product_data.Product;
+import pl.mprm.diet_calendar.service.ElementsService;
 import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
 
@@ -36,7 +37,7 @@ public class ProductController {
             log.error(bindingResult.getAllErrors().toString());
         }
         else {
-
+            productService.saveCommand(product);
         }
         return "redirect:/dietitian/products";
     }

@@ -14,7 +14,7 @@ public class Makroskladnik {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(targetEntity = Product.class)
+	@ManyToOne(targetEntity = Product.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "produktid")
 	private Product product;
 
