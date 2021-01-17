@@ -11,7 +11,6 @@ import java.util.Collection;
 @Component
 public class ProductToProductCommand implements Converter<Product, ProductCommand> {
 
-    @Nullable
     @Synchronized
     @Override
     public ProductCommand convert(Product source) {
@@ -36,7 +35,7 @@ public class ProductToProductCommand implements Converter<Product, ProductComman
     }
 
     private <T> String mapToString(Collection<T> collection) {
-        return collection.stream().map(T::toString)
+        return collection.stream().map(ob -> ob.toString() + "\n")
                 .reduce(new StringBuilder(), StringBuilder::append, StringBuilder::append).toString();
     }
 }

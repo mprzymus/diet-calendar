@@ -2,8 +2,6 @@ package pl.mprm.diet_calendar.controllers.product;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-
 @Data
 public class ProductCommand {
     private Long id;

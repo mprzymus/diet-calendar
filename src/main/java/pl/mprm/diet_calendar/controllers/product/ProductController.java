@@ -24,19 +24,20 @@ public class ProductController {
 
     @GetMapping("/products")
     public String showProducts(Model model) {
-        var allProducts = productService.findAllProducts();
+        var allProducts = productService.findAllProductsAsCommand();
         model = userService.addUserToModel(model);
         model.addAttribute("products", allProducts);
-        model.addAttribute("productToTest", allProducts.get(0));
         return "products";
     }
 
     @PostMapping("/products")
-    public String processChanges(@ModelAttribute("product") Product product, BindingResult bindingResult) {
+    public String processChanges(@ModelAttribute("product") ProductCommand product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
-            log.error("Coś się wyjebało!");
+            log.error(bindingResult.getAllErrors().toString());
         }
-        log.debug("Post");
+        else {
+
+        }
         return "redirect:/dietitian/products";
     }
 }
