@@ -1,4 +1,4 @@
-package pl.mprm.diet_calendar.model;
+package pl.mprm.diet_calendar.model.product_data;
 
 import lombok.*;
 
@@ -28,6 +28,6 @@ public class Product {
 	private String opis;
 
 	@Column(name = "czy_pelnowartosciowy")
-	private Boolean czy_pelnowartosciowy;
+	private Boolean czyPelnowartosciowy;
 
 }
