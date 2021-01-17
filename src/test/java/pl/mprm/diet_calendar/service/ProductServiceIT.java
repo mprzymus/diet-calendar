@@ -9,9 +9,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mprm.diet_calendar.dao.ProductRepository;
-import pl.mprm.diet_calendar.model.Makroskladnik;
-import pl.mprm.diet_calendar.model.Mikroskladnik;
-import pl.mprm.diet_calendar.model.Product;
+import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
+import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.Product;
 
 import java.util.Set;
 

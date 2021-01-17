@@ -1,4 +1,4 @@
-package pl.mprm.diet_calendar.model;
+package pl.mprm.diet_calendar.model.product_data;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mikroskladnik {
+public class Makroskladnik {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -20,4 +20,9 @@ public class Mikroskladnik {
 
 	private String nazwa;
 	private Double ilosc;
+
+	@Override
+	public String toString() {
+		return ElementUtils.generateElementString(nazwa, ilosc);
+	}
 }

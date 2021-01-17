@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import pl.mprm.diet_calendar.dao.ProductRepository;
-import pl.mprm.diet_calendar.model.Mikroskladnik;
-import pl.mprm.diet_calendar.model.Product;
+import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.Product;
 
 @Profile("dev")
 @Slf4j
@@ -24,7 +24,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         var product = new Product();
         product.setOpis("desc");
         product.setNazwa("name");
-        product.setCzy_pelnowartosciowy(false);
+        product.setCzyPelnowartosciowy(false);
         product.setKalorycznosc(10.0);
         product.setGramatura(10.0);
 

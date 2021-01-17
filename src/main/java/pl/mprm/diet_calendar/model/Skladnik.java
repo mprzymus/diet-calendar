@@ -1,6 +1,7 @@
 package pl.mprm.diet_calendar.model;
 
 import lombok.*;
+import pl.mprm.diet_calendar.model.product_data.Product;
 
 import javax.persistence.*;
 

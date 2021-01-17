@@ -1,4 +1,4 @@
-package pl.mprm.diet_calendar.controllers;
+package pl.mprm.diet_calendar.controllers.product;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.mprm.diet_calendar.model.Product;
+import pl.mprm.diet_calendar.model.product_data.Product;
 import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
 
