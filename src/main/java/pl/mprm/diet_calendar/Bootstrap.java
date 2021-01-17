@@ -32,7 +32,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         micro.setNazwa("micro");
         micro.setIlosc(10.4);
         micro.setProduct(product);
+        var micro2 = new Mikroskladnik();
+        micro2.setNazwa("micro2");
+        micro2.setIlosc(1.4);
+        micro2.setProduct(product);
         product.getMikroskladniki().add(micro);
+        product.getMikroskladniki().add(micro2);
         repository.save(product);
         product = new Product();
         repository.save(product);
