@@ -42,4 +42,8 @@ public class ProductService {
         elementsService.deleteProductsElements(product);
         return productRepository.save(product);
     }
+
+    public boolean nameExists(String name) {
+        return productRepository.findAllByNazwa(name).iterator().hasNext();
+    }
 }

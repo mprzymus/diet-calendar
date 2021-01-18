@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import pl.mprm.diet_calendar.configurations.MessageConfiguration;
 import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
 
@@ -25,15 +26,13 @@ public class ProductController {
 
     private final ProductService productService;
     private final UserService userService;
+    private final MessageConfiguration messageConfiguration;
 
     @GetMapping("/products")
-    public String showProducts(Model model, @ModelAttribute("error") String error) {
+    public String showProducts(Model model) {
         var allProducts = productService.findAllProductsAsCommand();
         model = userService.addUserToModel(model);
         model.addAttribute("products", allProducts);
-        if (error != null) {
-            model.addAttribute("error", error);
-        }
         return "products";
     }
 
@@ -45,7 +44,12 @@ public class ProductController {
             bindingResult.getFieldErrors()
                     .forEach(error -> attributes.addFlashAttribute(error.getField(), error.getDefaultMessage()));
         } else {
-            productService.saveCommand(product);
+            if (product.getId() != null && productService.nameExists(product.getNazwa())) {
+                attributes.addFlashAttribute("duplicated", messageConfiguration.getDuplicatedMessage());
+            }
+            else {
+                productService.saveCommand(product);
+            }
         }
         return redirectView;
     }
