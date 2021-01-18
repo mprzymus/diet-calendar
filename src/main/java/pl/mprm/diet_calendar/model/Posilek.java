@@ -19,7 +19,7 @@ public class Posilek {
 	@JoinColumn(name = "jadlospisid")
 	private Jadlospis jadlospis;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "danie")
 	private Collection<Skladnik> skladniki = new HashSet<>();
 
 	@Enumerated(value = EnumType.ORDINAL)

@@ -15,7 +15,8 @@ public class Skladnik {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(targetEntity = Posilek.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "posilekid")
 	private Posilek danie;
 
 	@ManyToOne
