@@ -1,6 +1,7 @@
 package pl.mprm.diet_calendar.model;
 
 import lombok.*;
+import pl.mprm.diet_calendar.model.product_data.Product;
 
 import javax.persistence.*;
 
@@ -18,6 +19,6 @@ public class Skladnik {
 	private Posilek danie;
 
 	@ManyToOne
-	private Produkt produkty;
+	private Product produkty;
 	private Double ilosc;
 }

@@ -1,4 +1,4 @@
-package pl.mprm.diet_calendar.model;
+package pl.mprm.diet_calendar.model.product_data;
 
 import lombok.*;
 
@@ -10,15 +10,16 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Produkt {
+@Table(name = "Produkt")
+public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private Collection<Makroskladnik> makroskladniki = new HashSet<>();
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private Collection<Mikroskladnik> mikroskladniki = new HashSet<>();
 
 	private Double kalorycznosc;
@@ -27,6 +28,6 @@ public class Produkt {
 	private String opis;
 
 	@Column(name = "czy_pelnowartosciowy")
-	private Boolean czy_pelnowartosciowy;
+	private Boolean czyPelnowartosciowy;
 
 }

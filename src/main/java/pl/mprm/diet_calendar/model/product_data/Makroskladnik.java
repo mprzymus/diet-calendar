@@ -1,4 +1,4 @@
-package pl.mprm.diet_calendar.model;
+package pl.mprm.diet_calendar.model.product_data;
 
 import lombok.*;
 
@@ -14,11 +14,15 @@ public class Makroskladnik {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(targetEntity = Produkt.class)
+	@ManyToOne(targetEntity = Product.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "produktid")
-	private Produkt produkt;
+	private Product product;
 
 	private String nazwa;
 	private Double ilosc;
 
+	@Override
+	public String toString() {
+		return ElementUtils.generateElementString(nazwa, ilosc);
+	}
 }
