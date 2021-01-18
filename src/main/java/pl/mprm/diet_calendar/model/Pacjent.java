@@ -18,7 +18,7 @@ public class Pacjent {
 	@OneToOne
 	private Kalendarz kalendarz;
 
-	@ManyToOne
+	@ManyToOne(targetEntity = Dietetyk.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "dietetykid")
 	private Dietetyk dietetyk;
 

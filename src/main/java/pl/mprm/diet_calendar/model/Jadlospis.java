@@ -15,10 +15,12 @@ public class Jadlospis {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
+
+	@ManyToOne(targetEntity = Kalendarz.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "kalendarzid")
 	private Kalendarz kalendarz;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "jadlospis")
 	private Collection<Posilek> posilki = new HashSet<>();
 
 	private Date data;

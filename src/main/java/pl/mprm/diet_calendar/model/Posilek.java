@@ -15,7 +15,7 @@ public class Posilek {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(targetEntity = Jadlospis.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "jadlospisid")
 	private Jadlospis jadlospis;
 

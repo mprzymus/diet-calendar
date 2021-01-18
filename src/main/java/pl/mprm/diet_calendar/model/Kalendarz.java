@@ -17,7 +17,7 @@ public class Kalendarz {
 
 	@OneToOne
 	private Pacjent pacjent;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kalendarz")
 	private Collection<Jadlospis> jadlospisy = new HashSet<>();
 	private String nazwaKalendarza;
 

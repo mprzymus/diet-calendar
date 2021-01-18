@@ -17,7 +17,7 @@ public class Dietetyk {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dietetyk", targetEntity = Pacjent.class)
 	private Collection<Pacjent> pacjenci = new HashSet<>();
 
 	private String login;
