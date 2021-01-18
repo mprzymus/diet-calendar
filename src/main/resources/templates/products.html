@@ -7,6 +7,7 @@
 
 <body>
 <h1 th:text="'Hello, ' +  ${userName}"></h1>
+<h1 th:text="${error}"></h1>
 <ol>
     <li th:each="product: ${products}">
         <!--@thymesVar id="product" type="pl.mprm.diet_calendar.controllers.product.ProductCommand"-->

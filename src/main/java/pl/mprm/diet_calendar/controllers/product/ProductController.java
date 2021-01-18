@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.mprm.diet_calendar.model.product_data.Product;
-import pl.mprm.diet_calendar.service.ElementsService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
+
+import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -24,21 +27,26 @@ public class ProductController {
     private final UserService userService;
 
     @GetMapping("/products")
-    public String showProducts(Model model) {
+    public String showProducts(Model model, @ModelAttribute("error") String error) {
         var allProducts = productService.findAllProductsAsCommand();
         model = userService.addUserToModel(model);
         model.addAttribute("products", allProducts);
+        if (error != null) {
+            model.addAttribute("error", error);
+        }
         return "products";
     }
 
     @PostMapping("/products")
-    public String processChanges(@ModelAttribute("product") ProductCommand product, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+    public RedirectView processChanges(@ModelAttribute("product") @Valid ProductCommand product, BindingResult bindingResult, RedirectAttributes attributes) {
+        var redirectView = new RedirectView("/dietitian/products", true);
+        if (bindingResult.hasErrors()) {
             log.error(bindingResult.getAllErrors().toString());
-        }
-        else {
+            bindingResult.getFieldErrors()
+                    .forEach(error -> attributes.addFlashAttribute(error.getField(), error.getDefaultMessage()));
+        } else {
             productService.saveCommand(product);
         }
-        return "redirect:/dietitian/products";
+        return redirectView;
     }
 }
