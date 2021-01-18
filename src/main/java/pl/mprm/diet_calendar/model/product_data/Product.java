@@ -23,7 +23,9 @@ public class Product {
 	private Collection<Mikroskladnik> mikroskladniki = new HashSet<>();
 
 	private Double kalorycznosc;
-	private String nazwa;
+
+	@Column(name = "nazwa")
+	private String name;
 	private Double gramatura;
 	private String opis;
 

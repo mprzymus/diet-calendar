@@ -23,7 +23,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         log.info("Adding data to db");
         var product = new Product();
         product.setOpis("desc");
-        product.setNazwa("name");
+        product.setName("name");
         product.setCzyPelnowartosciowy(false);
         product.setKalorycznosc(10.0);
         product.setGramatura(10.0);

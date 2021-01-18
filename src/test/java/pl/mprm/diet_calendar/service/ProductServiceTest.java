@@ -9,7 +9,6 @@ import pl.mprm.diet_calendar.dao.ProductRepository;
 import pl.mprm.diet_calendar.model.product_data.Product;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,19 +51,19 @@ class ProductServiceTest {
 
     @Test
     void nameNotExistsTest() {
-        when(productRepository.findAllByNazwa(anyString())).thenReturn(Collections.emptyList());
+        when(productRepository.findAllByName(anyString())).thenReturn(Collections.emptyList());
 
         assertFalse(productService.nameExists("name"));
 
-        verify(productRepository, times(1)).findAllByNazwa(anyString());
+        verify(productRepository, times(1)).findAllByName(anyString());
     }
 
     @Test
     void nameExists() {
-        when(productRepository.findAllByNazwa(anyString())).thenReturn(List.of(new Product()));
+        when(productRepository.findAllByName(anyString())).thenReturn(List.of(new Product()));
 
         assertTrue(productService.nameExists("name"));
 
-        verify(productRepository, times(1)).findAllByNazwa(anyString());
+        verify(productRepository, times(1)).findAllByName(anyString());
     }
 }

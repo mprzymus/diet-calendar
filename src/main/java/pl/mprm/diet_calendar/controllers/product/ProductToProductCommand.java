@@ -17,7 +17,7 @@ public class ProductToProductCommand implements Converter<Product, ProductComman
         var command = new ProductCommand();
         command.setId(source.getId());
         command.setGramatura(source.getGramatura());
-        command.setNazwa(source.getNazwa());
+        command.setNazwa(source.getName());
         command.setOpis(source.getOpis());
         command.setCzyPelnowartosciowy(source.getCzyPelnowartosciowy());
         command.setKalorycznosc(source.getKalorycznosc());

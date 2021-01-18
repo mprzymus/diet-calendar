@@ -44,6 +44,6 @@ public class ProductService {
     }
 
     public boolean nameExists(String name) {
-        return productRepository.findAllByNazwa(name).iterator().hasNext();
+        return productRepository.findAllByName(name).iterator().hasNext();
     }
 }
