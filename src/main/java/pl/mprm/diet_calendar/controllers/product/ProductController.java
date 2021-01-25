@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.mprm.diet_calendar.configurations.MessageConfiguration;
@@ -36,7 +33,15 @@ public class ProductController {
         return "dietitian/products";
     }
 
-    @PostMapping("/products")
+    @GetMapping("/addProduct/{id}")
+    public String addProducts(Model model, @PathVariable String id) {
+        var allProducts = productService.findAllProductsAsCommand();
+        model = userService.addUserToModel(model);
+        model.addAttribute("products", allProducts);
+        return "dietitian/addProduct";
+    }
+
+    @PostMapping("/addProduct")
     public RedirectView processChanges(@ModelAttribute("product") @Valid ProductCommand product, BindingResult bindingResult, RedirectAttributes attributes) {
         var redirectView = new RedirectView("/dietitian/products", true);
         if (bindingResult.hasErrors()) {

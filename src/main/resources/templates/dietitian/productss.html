@@ -24,7 +24,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/open/calc">Calculator</a>
                 </li>
-                <li th:if="${}" class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="/patient/calendar">Calendar</a>
                 </li>
             </ul>
@@ -50,15 +50,15 @@
                 <th>Remove</th>
             </tr>
 
-            <!-- for each product -->
-            <tr>
-                <td>Onion</td>
-                <td>2000 kcla</td>
-                <td>100g</td>
-                <td>Crazy onion</td>
-                <td>3g iron</td>
-                <td>10g fat</td>
-                <td>yes</td>
+
+            <tr th:each="product : ${products}">
+                <td th:text="${product.nazwa}"></td>
+                <td th:text="${product.kalorycznosc}"> kcal</td>
+                <td th:text="${product.gramatura}"></td>
+                <td th:text="${product.opis}"></td>
+                <td th:text="${product.mikroskladniki}"></td>
+                <td th:text="${product.makroskladniki}"></td>
+                <td th:text="${product.czyPelnowartosciowy}"></td>
                 <td><a class="btn btn-sm btn-dark" href="">Edit</a></td>
                 <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Meal</title>
+</head>
+
+<body>
+<h1 th:text="'Hello, ' +  ${userName}"></h1>
+<h1 th:text="${error}"></h1>
+<ol>
+    <li th:each="product: ${products}">
+        <!--@thymesVar id="product" type="pl.mprm.diet_calendar.controllers.product.ProductCommand"-->
+        <form action="#" method="POST" th:action="@{/dietitian/products}" th:object="${product}">
+            <input type="hidden" th:value="*{id}"  id="id" name="id"/>
+            <input type="text" th:value="*{nazwa}" id="nazwa" name="nazwa"/>
+            <input type="text" th:value="*{gramatura}" id="gramatura" name="gramatura"/>
+            <input type="text" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
+            <input type="text" th:value="*{opis}" id="opis" name="opis"/>
+            <textarea rows="1" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
+            <input type="submit" value="Submit"/>
+        </form>
+    </li>
+</ol>
+</body>
+</html>
