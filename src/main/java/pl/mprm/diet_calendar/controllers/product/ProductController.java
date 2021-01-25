@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.mprm.diet_calendar.configurations.MessageConfiguration;
@@ -17,6 +14,7 @@ import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,6 +23,7 @@ import javax.validation.Valid;
 public class ProductController {
 
     private final ProductService productService;
+    private final UserService userService;
     private final MessageConfiguration messageConfiguration;
     private final UserController userController;
 
@@ -33,7 +32,15 @@ public class ProductController {
         var allProducts = productService.findAllProductsAsCommand();
         model = userController.addUserDataToModel(model);
         model.addAttribute("products", allProducts);
-        return "products";
+        return "dietitian/products";
+    }
+
+    @GetMapping("/addProduct/{id}")
+    public String addProducts(Model model, @PathVariable String id) {
+        var allProducts = productService.findAllProductsAsCommand();
+        model = userService.addUserToModel(model);
+        model.addAttribute("products", allProducts);
+        return "dietitian/addProduct";
     }
 
     @PostMapping("/products")

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Calkulator</title>
+    <title>Products</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/global.css">
+
 </head>
 <body>
 <header>
@@ -18,10 +18,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Homepage</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/dietitian/products">Products</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/open/calc">Calculator</a>
                 </li>
                 <li class="nav-item">
@@ -31,17 +31,42 @@
         </div>
     </nav>
 </header>
-<div class="wrapper">
-    <section class="left">
-        <p>
+<br>
+<div class="col-md-9">
+    <h5>Products</h5>
+    <hr>
+    <div class="card card-body">
+        <a class="btn btn-dark  btn-sm" href="">Add</a>
+        <table class="table table-bordered table-lg">
+            <tr>
+                <th>Name</th>
+                <th>Calories</th>
+                <th>Grammage</th>
+                <th>Description</th>
+                <th>Microelements</th>
+                <th>Macroelements</th>
+                <th>Full blown</th>
+                <th>Update</th>
+                <th>Remove</th>
+            </tr>
 
-        </p>
-    </section>
-    <section class="right">
-        <p>
 
-        </p>
-    </section>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.nazwa}"></td>
+                <td th:text="${product.kalorycznosc}"> kcal</td>
+                <td th:text="${product.gramatura}"></td>
+                <td th:text="${product.opis}"></td>
+                <td th:text="${product.mikroskladniki}"></td>
+                <td th:text="${product.makroskladniki}"></td>
+                <td th:text="${product.czyPelnowartosciowy}"></td>
+                <td><a class="btn btn-sm btn-dark" href="">Edit</a></td>
+                <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
+
+            </tr>
+
+
+        </table>
+    </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
