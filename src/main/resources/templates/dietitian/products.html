@@ -36,7 +36,7 @@
     <h5>Products</h5>
     <hr>
     <div class="card card-body">
-        <a class="btn btn-dark  btn-sm" href="">Add</a>
+        <a class="btn btn-dark  btn-sm" href="/dietitian/addProduct/new">Add</a>
         <table class="table table-bordered table-lg">
             <tr>
                 <th>Name</th>
@@ -52,7 +52,6 @@
 
 
             <tr th:each="product : ${products}">
-                <form action="#" method="POST">
                 <td th:text="${product.nazwa}"></td>
                 <td th:text="${product.kalorycznosc}"> kcal</td>
                 <td th:text="${product.gramatura}"></td>
@@ -62,7 +61,6 @@
                 <td th:text="${product.czyPelnowartosciowy}"></td>
                 <td><a class="btn btn-sm btn-dark" href="">Edit</a></td>
                 <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
-                </form>
             </tr>
 
 
