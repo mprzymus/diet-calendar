@@ -38,8 +38,7 @@ public class ProductController {
         try {
             var idAsLong = Long.parseLong(id);
             product = productService.findDtoById(idAsLong);
-        }
-        catch (NumberFormatException exception) {
+        } catch (NumberFormatException exception) {
             product = new ProductDto();
         }
         model = userController.addUserDataToModel(model);
@@ -58,7 +57,11 @@ public class ProductController {
             if (product.getId() == null && productService.nameExists(product.getNazwa())) {
                 attributes.addFlashAttribute("duplicated", messageConfiguration.getDuplicatedMessage());
             } else {
-                productService.saveCommand(product);
+                try {
+                    productService.saveCommand(product);
+                } catch (IllegalArgumentException ex) {
+                    attributes.addFlashAttribute("invalid_format", messageConfiguration.getDuplicatedMessage());
+                }
             }
         }
         return redirectView;
