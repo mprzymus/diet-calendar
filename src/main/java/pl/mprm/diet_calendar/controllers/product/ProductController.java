@@ -11,10 +11,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import pl.mprm.diet_calendar.configurations.MessageConfiguration;
 import pl.mprm.diet_calendar.controllers.UserController;
 import pl.mprm.diet_calendar.service.ProductService;
-import pl.mprm.diet_calendar.service.UserService;
 
 import javax.validation.Valid;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -23,7 +21,6 @@ import java.util.stream.Collectors;
 public class ProductController {
 
     private final ProductService productService;
-    private final UserService userService;
     private final MessageConfiguration messageConfiguration;
     private final UserController userController;
 
@@ -37,9 +34,16 @@ public class ProductController {
 
     @GetMapping("/addProduct/{id}")
     public String addProducts(Model model, @PathVariable String id) {
-        var allProducts = productService.findAllProductsAsCommand();
+        ProductDto product;
+        try {
+            var idAsLong = Long.parseLong(id);
+            product = productService.findDtoById(idAsLong);
+        }
+        catch (NumberFormatException exception) {
+            product = new ProductDto();
+        }
         model = userController.addUserDataToModel(model);
-        model.addAttribute("products", allProducts);
+        model.addAttribute("product", product);
         return "dietitian/addProduct";
     }
 
@@ -53,8 +57,7 @@ public class ProductController {
         } else {
             if (product.getId() != null && productService.nameExists(product.getNazwa())) {
                 attributes.addFlashAttribute("duplicated", messageConfiguration.getDuplicatedMessage());
-            }
-            else {
+            } else {
                 productService.saveCommand(product);
             }
         }
