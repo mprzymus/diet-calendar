@@ -52,6 +52,7 @@
 
 
             <tr th:each="product : ${products}">
+                <form action="#" method="POST">
                 <td th:text="${product.nazwa}"></td>
                 <td th:text="${product.kalorycznosc}"> kcal</td>
                 <td th:text="${product.gramatura}"></td>
@@ -61,7 +62,7 @@
                 <td th:text="${product.czyPelnowartosciowy}"></td>
                 <td><a class="btn btn-sm btn-dark" href="">Edit</a></td>
                 <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
-
+                </form>
             </tr>
 
 
