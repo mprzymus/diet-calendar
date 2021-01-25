@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.mprm.diet_calendar.dao.MealRepository;
 import pl.mprm.diet_calendar.model.Posilek;
 import pl.mprm.diet_calendar.service.DailyMenuService;
 import pl.mprm.diet_calendar.service.UserService;
@@ -12,7 +13,6 @@ import pl.mprm.diet_calendar.service.UserService;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 @RequiredArgsConstructor
@@ -23,6 +23,7 @@ public class PatientController {
     private final DailyMenuService dailyMenuService;
     private final UserService userService;
     private final UserController userController;
+    private final MealRepository mealRepository;
 
     @GetMapping("/calendar/{year}/{month}")
     public String showCalendar(Model model, @PathVariable Integer year, @PathVariable Integer month) {
@@ -39,6 +40,9 @@ public class PatientController {
         var mealsAsList = new ArrayList<>(menu.getPosilki());
         Collections.sort(mealsAsList);
         model.addAttribute("meals", mealsAsList);
+        model.addAttribute("year", year);
+        model.addAttribute("month", month);
+        model.addAttribute("day", day);
         return "patient/calendar";
     }
 
@@ -48,18 +52,30 @@ public class PatientController {
         return "redirect:/patient/calendar/" + today.getYear() + "/" + today.getMonthValue() + "/" + today.getDayOfMonth();
     }
 
-    @PostMapping("/calendar/{year}/{month}/edit")
-    public String editMeal(@PathVariable Integer year, @PathVariable Integer month,
+    @PostMapping("/calendar/{year}/{month}/{day}/edit")
+    public String editMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
                            @ModelAttribute("meal") @Valid Posilek meal) {
-        int day = 0; //TODO HOW THEY WOULD BE PASSED?
         var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), userService.getUsername());
-        var toUpdateOptional = menu.getPosilki().stream()
-                .filter(saved -> saved.getId().equals(meal.getId())).findAny();
-        toUpdateOptional.ifPresent(element -> menu.getPosilki().remove(element));
+        if (meal.getId() != null) {
+            var toUpdateOptional = menu.getPosilki().stream()
+                    .filter(saved -> saved.getId().equals(meal.getId())).findAny();
+            toUpdateOptional.ifPresent(element -> menu.getPosilki().remove(element));
+        }
         meal.setDailyMenu(menu);
         menu.getPosilki().add(meal);
         dailyMenuService.save(menu);
-        return "redirect:/patient/calendar" + year + "/" + month;
+        return "redirect:/patient/calendar" + year + "/" + month + "/" + day;
+    }
+
+    @GetMapping("/calendar/{year}/{month}/{day}/{id}/edit")
+    public String showEditMeal(Model model, @PathVariable Long year, @PathVariable Long month, @PathVariable Long day,
+                               @PathVariable Long id) {
+        var meal = mealRepository.findById(id);
+        if (meal.isEmpty()) {
+            return "redirect:/patient/calendar" + year + "/" + month + "/" + day;
+        }
+        model.addAttribute("meal", meal.get());
+        return "patient/editMeal";
     }
 
     @GetMapping
@@ -67,6 +83,6 @@ public class PatientController {
         var userName = userService.getUsername();
         var dailyMenu = dailyMenuService.findByDate(LocalDate.now(), userName);
         model.addAttribute("menu", dailyMenu);
-        return "patient/welcome";
+        return "index";
     }
 }
