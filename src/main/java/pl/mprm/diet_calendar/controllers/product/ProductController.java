@@ -14,6 +14,7 @@ import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -22,6 +23,7 @@ import javax.validation.Valid;
 public class ProductController {
 
     private final ProductService productService;
+    private final UserService userService;
     private final MessageConfiguration messageConfiguration;
     private final UserController userController;
 
@@ -41,7 +43,7 @@ public class ProductController {
         return "dietitian/addProduct";
     }
 
-    @PostMapping("/addProduct")
+    @PostMapping("/products")
     public RedirectView processChanges(@ModelAttribute("product") @Valid ProductDto product, BindingResult bindingResult, RedirectAttributes attributes) {
         var redirectView = new RedirectView("/dietitian/products", true);
         if (bindingResult.hasErrors()) {
