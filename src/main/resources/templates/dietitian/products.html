@@ -59,7 +59,7 @@
                 <td th:text="${product.mikroskladniki}"></td>
                 <td th:text="${product.makroskladniki}"></td>
                 <td th:text="${product.czyPelnowartosciowy}"></td>
-                <td><a class="btn btn-sm btn-dark" href="">Edit</a></td>
+                <td><a class="btn btn-sm btn-dark" th:href="@{/dietitian/addProduct/{id}(id=${product.id})}">Edit</a></td>
                 <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
             </tr>
 

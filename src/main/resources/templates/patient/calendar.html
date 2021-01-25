@@ -77,18 +77,18 @@
                         <tr>
                             <th>Time</th>
                             <th>Meal</th>
+                            <th>Type</th>
                             <th>Calories</th>
-                            <th>Eaten</th>
                             <th>Update</th>
                             <th>Remove</th>
                         </tr>
 
                         <!-- for each posilek in jadlospis -->
-                        <tr>
-                            <td>8:00</td>
-                            <td>Obiad</td>
-                            <td>3000 kcal</td>
-                            <td>yes</td>
+                        <tr th:each="meal : ${meals}">
+                            <td ><div th:text="${meal.godzinaPosilku}"></div><div th:text="${meal.minutaPosilku}"></div></td>
+                            <td ><div th:text="${meal.name}"></div></td>
+                            <td ><div th:text="${meal.rodzajPosilku}"></div></td>
+                            <td><div th:text="${meal.kalorycznosc}"></div></td>
                             <td><a class="btn btn-sm btn-dark" href="">Edit</a></td>
 
                             <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>

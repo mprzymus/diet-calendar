@@ -45,7 +45,7 @@ public class PatientController {
     @GetMapping("/calendar")
     public String showCalendar() {
         var today = LocalDate.now();
-        return "redirect:/patient/calendar/" + today.getYear() + "/" + today.getMonthValue();
+        return "redirect:/patient/calendar/" + today.getYear() + "/" + today.getMonthValue() + "/" + today.getDayOfMonth();
     }
 
     @PostMapping("/calendar/{year}/{month}/edit")
