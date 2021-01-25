@@ -51,16 +51,17 @@ const renderCalendar = () => {
   for (let x = firstDayIndex; x > 0; x--) {
     days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
   }
-  let yy = date.getFullYear()
-  let mm = date.getMonth()
+  let yy = date.getFullYear().toString()
+  let mm = (date.getMonth() + 1).toString()
+  let slash = "/"
   for (let i = 1; i <= lastDay; i++) {
     if (
       i === new Date().getDate() &&
       date.getMonth() === new Date().getMonth()
     ) {
-      days += `<a href="/"+yy+"/"+mm+"/"+i><div class="today">${i}</div></a>`;
+      days += `<a href=${slash}patient${slash}calendar${slash}${yy}${slash}${mm}${slash}${i}><div class="today">${i}</div></a>`;
     } else {
-      days += `<a href="/"+yy+"/"+mm+"/"+i><div class="day">${i}</div></a>`;
+      days += `<a href=${slash}patient${slash}calendar${slash}${yy}${slash}${mm}${slash}${i}><div class="day">${i}</div></a>`;
     }
   }
 
