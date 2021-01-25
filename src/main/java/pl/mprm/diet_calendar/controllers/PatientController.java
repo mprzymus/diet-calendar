@@ -1,6 +1,7 @@
 package pl.mprm.diet_calendar.controllers;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,13 @@ import pl.mprm.diet_calendar.service.UserService;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 @RequestMapping("/patient")
 public class PatientController {
     private final DailyMenuService dailyMenuService;
@@ -21,9 +26,19 @@ public class PatientController {
 
     @GetMapping("/calendar/{year}/{month}")
     public String showCalendar(Model model, @PathVariable Integer year, @PathVariable Integer month) {
+        userController.addUserDataToModel(model);
+        return "patient/calendar";
+    }
+
+    @GetMapping("/calendar/{year}/{month}/{day}")
+    public String showDayData(Model model, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day) {
+        log.debug("Showing details of day: {}-{}-{}", day, month, year);
         var userName = userService.getUsername();
-        model = userController.addUserDataToModel(model);
-        model.addAttribute("menu", dailyMenuService.findMenusForMonth(year,month, userName));
+        userController.addUserDataToModel(model);
+        var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), userName);
+        var mealsAsList = new ArrayList<>(menu.getPosilki());
+        Collections.sort(mealsAsList);
+        model.addAttribute("meals", mealsAsList);
         return "patient/calendar";
     }
 
