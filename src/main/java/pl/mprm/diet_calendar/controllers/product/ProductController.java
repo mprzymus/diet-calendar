@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.mprm.diet_calendar.configurations.MessageConfiguration;
+import pl.mprm.diet_calendar.controllers.UserController;
 import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
 
@@ -24,13 +25,13 @@ import javax.validation.Valid;
 public class ProductController {
 
     private final ProductService productService;
-    private final UserService userService;
     private final MessageConfiguration messageConfiguration;
+    private final UserController userController;
 
     @GetMapping("/products")
     public String showProducts(Model model) {
         var allProducts = productService.findAllProductsAsCommand();
-        model = userService.addUserToModel(model);
+        model = userController.addUserDataToModel(model);
         model.addAttribute("products", allProducts);
         return "products";
     }

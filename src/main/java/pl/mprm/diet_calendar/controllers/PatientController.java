@@ -17,12 +17,12 @@ import java.time.LocalDate;
 public class PatientController {
     private final DailyMenuService dailyMenuService;
     private final UserService userService;
-
+    private final UserController userController;
 
     @GetMapping("/calendar/{year}/{month}")
     public String showCalendar(Model model, @PathVariable Integer year, @PathVariable Integer month) {
         var userName = userService.getUsername();
-        model.addAttribute("userName", userName);
+        model = userController.addUserDataToModel(model);
         model.addAttribute("menu", dailyMenuService.findMenusForMonth(year,month, userName));
         return "patient/calendar";
     }
