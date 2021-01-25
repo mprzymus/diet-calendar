@@ -61,6 +61,7 @@ public class PatientController {
                     .filter(saved -> saved.getId().equals(meal.getId())).findAny();
             toUpdateOptional.ifPresent(element -> menu.getPosilki().remove(element));
         }
+        //TODO TIGHT NEW MENU WITH CALENDAR
         meal.setDailyMenu(menu);
         menu.getPosilki().add(meal);
         dailyMenuService.save(menu);
@@ -76,6 +77,13 @@ public class PatientController {
         }
         model.addAttribute("meal", meal.get());
         return "patient/editMeal";
+    }
+
+    @GetMapping("/calendar/{year}/{month}/{day}/new")
+    public String showNewMeal(Model model, @PathVariable Long year, @PathVariable Long month, @PathVariable Long day) {
+        var meal = new Posilek();
+        model.addAttribute("meal", meal);
+        return "patient/addMeal";
     }
 
     @GetMapping
