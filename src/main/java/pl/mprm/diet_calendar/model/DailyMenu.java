@@ -3,6 +3,7 @@ package pl.mprm.diet_calendar.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -11,19 +12,23 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Jadlospis {
+@Table(name = "Jadlospis")
+public class DailyMenu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(targetEntity = Kalendarz.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Calendar.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "kalendarzid")
-	private Kalendarz kalendarz;
+	private Calendar calendar;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "jadlospis")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyMenu")
 	private Collection<Posilek> posilki = new HashSet<>();
 
-	private Date data;
+	@Column(name = "data")
+	private LocalDate date;
+
+	@Column(name = "deficytKaloryczny")
 	private Double deficytKaloryczny;
 
 }

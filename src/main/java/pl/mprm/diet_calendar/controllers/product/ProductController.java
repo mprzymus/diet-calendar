@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.mprm.diet_calendar.configurations.MessageConfiguration;
+import pl.mprm.diet_calendar.controllers.UserController;
 import pl.mprm.diet_calendar.service.ProductService;
 import pl.mprm.diet_calendar.service.UserService;
 
 import javax.validation.Valid;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,19 +25,19 @@ import java.util.stream.Collectors;
 public class ProductController {
 
     private final ProductService productService;
-    private final UserService userService;
     private final MessageConfiguration messageConfiguration;
+    private final UserController userController;
 
     @GetMapping("/products")
     public String showProducts(Model model) {
         var allProducts = productService.findAllProductsAsCommand();
-        model = userService.addUserToModel(model);
+        model = userController.addUserDataToModel(model);
         model.addAttribute("products", allProducts);
         return "products";
     }
 
     @PostMapping("/products")
-    public RedirectView processChanges(@ModelAttribute("product") @Valid ProductCommand product, BindingResult bindingResult, RedirectAttributes attributes) {
+    public RedirectView processChanges(@ModelAttribute("product") @Valid ProductDto product, BindingResult bindingResult, RedirectAttributes attributes) {
         var redirectView = new RedirectView("/dietitian/products", true);
         if (bindingResult.hasErrors()) {
             log.error(bindingResult.getAllErrors().toString());

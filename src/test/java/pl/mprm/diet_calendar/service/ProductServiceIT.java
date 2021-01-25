@@ -55,4 +55,14 @@ public class ProductServiceIT {
         assertEquals(2, prodFromDb.getMikroskladniki().size());
         assertEquals(2, prodFromDb.getMakroskladniki().size());
     }
+
+    @Test
+    void saveEmptyProductTest() {
+        assertEquals(0, productService.findAllProducts().size());
+
+        var prod = new Product();
+
+        productRepository.save(prod);
+        assertEquals(1, productService.findAllProducts().size());
+    }
 }
