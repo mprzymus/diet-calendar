@@ -19,7 +19,7 @@ import java.util.stream.StreamSupport;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final ProductToProductDto toProductCommand;
+    private final ProductToProductDto toProductDto;
     private final ProductCommandToProduct toProduct;
     private final ElementsService elementsService;
 
@@ -31,7 +31,7 @@ public class ProductService {
 
     public List<ProductDto> findAllProductsAsCommand() {
         return StreamSupport.stream(productRepository.findAll().spliterator(), false)
-                .map(toProductCommand::convert)
+                .map(toProductDto::convert)
                 .collect(Collectors.toList());
     }
 
@@ -45,5 +45,10 @@ public class ProductService {
 
     public boolean nameExists(String name) {
         return productRepository.findAllByName(name).iterator().hasNext();
+    }
+
+    public ProductDto findDtoById(Long id) {
+        var product = productRepository.findById(id).orElse(new Product());
+        return toProductDto.convert(product);
     }
 }
