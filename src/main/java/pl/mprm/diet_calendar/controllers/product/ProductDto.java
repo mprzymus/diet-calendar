@@ -29,6 +29,5 @@ public class ProductDto {
     @NotEmpty
     private String opis;
 
-    @NotNull
-    private Boolean czyPelnowartosciowy;
+    private Boolean czyPelnowartosciowy = false;
 }

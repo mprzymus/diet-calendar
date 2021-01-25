@@ -47,20 +47,18 @@
                 <th>Macroelements</th>
                 <th>Full blown</th>
                 <th>Update</th>
-                <th>Remove</th>
             </tr>
 
 
             <tr th:each="product : ${products}">
-                <td th:text="${product.nazwa}"></td>
-                <td th:text="${product.kalorycznosc}"> kcal</td>
-                <td th:text="${product.gramatura}"></td>
+                <td><div th:text="${product.nazwa}"></div></td>
+                <td><div th:text="${product.kalorycznosc}"></div>kcal</td>
+                <td><div th:text="${product.gramatura}"></div>g</td>
                 <td th:text="${product.opis}"></td>
                 <td th:text="${product.mikroskladniki}"></td>
                 <td th:text="${product.makroskladniki}"></td>
                 <td th:text="${product.czyPelnowartosciowy}"></td>
                 <td><a class="btn btn-sm btn-dark" th:href="@{/dietitian/addProduct/{id}(id=${product.id})}">Edit</a></td>
-                <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
             </tr>
 
 
