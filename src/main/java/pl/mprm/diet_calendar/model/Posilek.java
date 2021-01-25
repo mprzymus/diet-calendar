@@ -13,7 +13,7 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Posilek {
+public class Posilek implements Comparable<Posilek> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,4 +41,19 @@ public class Posilek {
     @Min(0)
     private Double kalorycznosc;
 
+    @Column(name = "nazwa")
+    private String name;
+
+    @Override
+    public int compareTo(Posilek posilek) {
+        int result = godzinaPosilku.compareTo(posilek.godzinaPosilku);
+        if (result != 0) {
+            return result;
+        }
+        result = minutaPosilku.compareTo(posilek.minutaPosilku);
+        if (result != 0) {
+            return result;
+        }
+        return name.compareTo(posilek.name);
+    }
 }
