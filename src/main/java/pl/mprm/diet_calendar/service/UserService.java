@@ -13,10 +13,14 @@ public class UserService {
     public static final String ATTRIBUTE_NAME = "userName";
 
     public Model addUserToModel(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String principalName = authentication.getName();
+        String principalName = getUsername();
         log.debug("User name: {}", principalName);
         model.addAttribute(ATTRIBUTE_NAME, principalName);
         return model;
+    }
+
+    public String getUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 }

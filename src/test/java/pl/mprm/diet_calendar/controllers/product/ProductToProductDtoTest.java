@@ -9,9 +9,9 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProductToProductCommandTest {
+class ProductToProductDtoTest {
 
-    private final ProductToProductCommand tested = new ProductToProductCommand();
+    private final ProductToProductDto tested = new ProductToProductDto();
 
     @Test
     void nullElementsTest() {

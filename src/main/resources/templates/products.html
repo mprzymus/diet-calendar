@@ -10,7 +10,7 @@
 <h1 th:text="${error}"></h1>
 <ol>
     <li th:each="product: ${products}">
-        <!--@thymesVar id="product" type="pl.mprm.diet_calendar.controllers.product.ProductCommand"-->
+        <!--@thymesVar id="product" type="pl.mprm.diet_calendar.controllers.product.ProductDto"-->
         <form action="#" method="POST" th:action="@{/dietitian/products}" th:object="${product}">
             <input type="hidden" th:value="*{id}"  id="id" name="id"/>
             <input type="text" th:value="*{nazwa}" id="nazwa" name="nazwa"/>

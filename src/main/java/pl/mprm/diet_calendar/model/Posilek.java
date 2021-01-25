@@ -15,9 +15,9 @@ public class Posilek {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(targetEntity = Jadlospis.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = DailyMenu.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "jadlospisid")
-	private Jadlospis jadlospis;
+	private DailyMenu dailyMenu;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "danie")
 	private Collection<Skladnik> skladniki = new HashSet<>();

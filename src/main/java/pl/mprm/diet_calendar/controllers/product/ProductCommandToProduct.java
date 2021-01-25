@@ -13,11 +13,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-public class ProductCommandToProduct implements Converter<ProductCommand, Product> {
+public class ProductCommandToProduct implements Converter<ProductDto, Product> {
 
     @Synchronized
     @Override
-    public Product convert(ProductCommand source) {
+    public Product convert(ProductDto source) {
         var product = new Product();
         product.setId(source.getId());
         product.setGramatura(source.getGramatura());
