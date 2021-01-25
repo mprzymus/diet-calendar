@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
 
+import java.time.DateTimeException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,5 +31,13 @@ class DailyMenuServiceTest {
 
         assertEquals(30, result.size());
         verify(repository, times(30)).findByCalendarPacjentLoginAndDate(anyString(), any());
+    }
+
+    @Test
+    void invalidDataTest() {
+        assertThrows(DateTimeException.class, () -> dailyMenuService.findMenusForMonth(2001, 13, "userName"));
+        assertThrows(DateTimeException.class, () -> dailyMenuService.findMenusForMonth(2001, -13, "userName"));
+        assertThrows(DateTimeException.class, () -> dailyMenuService.findMenusForMonth(2001, 0, "userName"));
+
     }
 }

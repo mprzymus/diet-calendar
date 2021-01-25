@@ -27,6 +27,8 @@ public class DailyMenu {
 
 	@Column(name = "data")
 	private LocalDate date;
+
+	@Column(name = "deficytKaloryczny")
 	private Double deficytKaloryczny;
 
 }

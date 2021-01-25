@@ -39,6 +39,7 @@ class DailyMenuRepositoryTest {
 
         dailyMenuRepository.save(dailyMenu);
     }
+
     @Test
     void findByCalendarPacjentLoginAndAndDate() {
         var result = dailyMenuRepository.findByCalendarPacjentLoginAndDate(LOGIN, DATE);
@@ -47,5 +48,18 @@ class DailyMenuRepositoryTest {
         assertEquals(DATE, ob.getDate());
         assertEquals(LOGIN, ob.getCalendar().getPacjent().getLogin());
         System.out.println(ob);
+    }
+
+    @Test
+    void findByCalendarPacjentLoginAndAndDateInvalidData() {
+        assertDoesNotThrow(
+                () -> dailyMenuRepository.findByCalendarPacjentLoginAndDate
+                        (LOGIN + "someText", DATE.minusDays(2)));
+
+        var result = dailyMenuRepository.findByCalendarPacjentLoginAndDate
+                (LOGIN + "someText", DATE.minusDays(2));
+
+        assertTrue(result.isEmpty());
+
     }
 }
