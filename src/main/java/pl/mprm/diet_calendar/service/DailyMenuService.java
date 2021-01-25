@@ -13,8 +13,7 @@ import java.time.LocalDate;
 public class DailyMenuService {
     private final DailyMenuRepository dailyMenuRepository;
 
-    public DailyMenu findByDate(LocalDate date, Calendar calendar) {
-        //return dailyMenuRepository.findByCalendarAndDate(calendar, date).orElse(new DailyMenu());
-        return null;
+    public DailyMenu findByDate(LocalDate date, String userName) {
+        return dailyMenuRepository.findByCalendarPacjentLoginAndDate(userName, date).orElse(new DailyMenu());
     }
 }
