@@ -11,4 +11,5 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "message")
 public class MessageConfiguration {
     private String duplicatedMessage;
+    private String invalidFormat;
 }
