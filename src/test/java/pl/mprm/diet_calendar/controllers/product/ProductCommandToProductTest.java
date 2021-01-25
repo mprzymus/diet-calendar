@@ -12,7 +12,7 @@ class ProductCommandToProductTest {
 
     @Test
     void nullElementsTest() {
-        ProductCommand product = new ProductCommand();
+        ProductDto product = new ProductDto();
         product.setId(1L);
         product.setMakroskladniki(null);
         product.setMikroskladniki(null);
@@ -26,7 +26,7 @@ class ProductCommandToProductTest {
 
     @Test
     void noElementsTest() {
-        ProductCommand product = new ProductCommand();
+        ProductDto product = new ProductDto();
         product.setId(1L);
 
         var result = tested.convert(product);
@@ -38,7 +38,7 @@ class ProductCommandToProductTest {
 
     @Test
     void emptyElementsTest() {
-        ProductCommand product = new ProductCommand();
+        ProductDto product = new ProductDto();
         product.setId(1L);
         product.setMakroskladniki("");
         product.setMikroskladniki("");
@@ -52,7 +52,7 @@ class ProductCommandToProductTest {
 
     @Test
     void elementsTest() {
-        ProductCommand product = new ProductCommand();
+        ProductDto product = new ProductDto();
         product.setId(1L);
         var micro1 = new Mikroskladnik();
         micro1.setNazwa("m1");

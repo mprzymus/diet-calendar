@@ -15,8 +15,8 @@ public class Pacjent {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne
-	private Kalendarz kalendarz;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Calendar calendar;
 
 	@ManyToOne(targetEntity = Dietetyk.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "dietetykid")
@@ -34,5 +34,7 @@ public class Pacjent {
 	private Plec plec;
 
 	private LocalDate dataUrodzenia;
+
+	private String login;
 
 }
