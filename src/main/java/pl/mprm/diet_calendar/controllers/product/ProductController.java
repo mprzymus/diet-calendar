@@ -33,7 +33,7 @@ public class ProductController {
         var allProducts = productService.findAllProductsAsCommand();
         model = userService.addUserToModel(model);
         model.addAttribute("products", allProducts);
-        return "products";
+        return "dietitian/products";
     }
 
     @PostMapping("/products")
