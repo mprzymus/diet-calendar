@@ -27,6 +27,12 @@ public class PatientController {
         return "patient/calendar";
     }
 
+    @GetMapping("/calendar")
+    public String showCalendar() {
+        var today = LocalDate.now();
+        return "redirect:/patient/calendar/" + today.getYear() + "/" + today.getMonthValue();
+    }
+
     @PostMapping("/calendar/{year}/{month}/edit")
     public String editMeal(@PathVariable Integer year, @PathVariable Integer month,
                            @ModelAttribute("meal") @Valid Posilek meal) {
