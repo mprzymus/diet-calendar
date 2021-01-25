@@ -48,14 +48,14 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public RedirectView processChanges(@ModelAttribute("product") @Valid ProductDto product, BindingResult bindingResult, RedirectAttributes attributes) {
+    public RedirectView processEdit(@ModelAttribute("product") @Valid ProductDto product, BindingResult bindingResult, RedirectAttributes attributes) {
         var redirectView = new RedirectView("/dietitian/products", true);
         if (bindingResult.hasErrors()) {
             log.error(bindingResult.getAllErrors().toString());
             bindingResult.getFieldErrors()
                     .forEach(error -> attributes.addFlashAttribute(error.getField(), error.getDefaultMessage()));
         } else {
-            if (product.getId() != null && productService.nameExists(product.getNazwa())) {
+            if (product.getId() == null && productService.nameExists(product.getNazwa())) {
                 attributes.addFlashAttribute("duplicated", messageConfiguration.getDuplicatedMessage());
             } else {
                 productService.saveCommand(product);
