@@ -72,7 +72,7 @@
                 <h5>Meals</h5>
                 <hr>
                 <div class="card card-body">
-                    <a class="btn btn-dark  btn-sm" href="">Add meal</a>
+                    <a class="btn btn-dark  btn-sm" th:href="@{/patient/calendar/{year}/{month}/{day}/new (year=${year}, month=${month}, day=${day})}">Add meal</a>
                     <table class="table table-sm">
                         <tr>
                             <th>Time</th>
@@ -82,14 +82,12 @@
                             <th>Update</th>
                             <th>Remove</th>
                         </tr>
-
-                        <!-- for each posilek in jadlospis -->
                         <tr th:each="meal : ${meals}">
                             <td ><div th:text="${meal.godzinaPosilku}"></div><div th:text="${meal.minutaPosilku}"></div></td>
                             <td ><div th:text="${meal.name}"></div></td>
                             <td ><div th:text="${meal.rodzajPosilku}"></div></td>
                             <td><div th:text="${meal.kalorycznosc}"></div></td>
-                            <td><a class="btn btn-sm btn-dark" href="">Edit</a></td>
+                            <td><a class="btn btn-sm btn-dark" th:href="@{/patient/calendar/{year}/{month}/{day}/{id}/edit(id=${meal.id}, year=${year}, month=${month}, day=${day})}">Edit</a></td>
 
                             <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
 

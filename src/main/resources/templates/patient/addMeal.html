@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add product</title>
+    <title>Meal</title>
 </head>
 
 <body>
 <ol>
 
-        <form action="#" method="POST" th:action="@{/dietitian/products}" th:object="${product}">
+        <form action="#" method="POST" th:action="@{/patient/calendar}" th:object="${meal}">
             <input type="hidden" th:value="*{id}"  id="id" name="id"/>
-            <input type="text" th:value="*{nazwa}" id="nazwa" name="nazwa"/>
-            <input type="text" th:value="*{gramatura}" id="gramatura" name="gramatura"/>
+            <input type="hidden" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku"/>
+            <input type="text" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku"/>
+            <input type="text" th:value="*{name}" id="name" name="name"/>
+            <input type="text" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku"/>
             <input type="text" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
-            <input type="text" th:value="*{opis}" id="opis" name="opis"/>
-            <textarea rows="1" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
             <input type="submit" value="Submit"/>
         </form>
 

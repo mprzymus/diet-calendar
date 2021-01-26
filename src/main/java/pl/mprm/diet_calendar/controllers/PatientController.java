@@ -76,7 +76,7 @@ public class PatientController {
             return "redirect:/patient/calendar" + year + "/" + month + "/" + day;
         }
         model.addAttribute("meal", meal.get());
-        return "patient/editMeal";
+        return "patient/addMeal";
     }
 
     @GetMapping("/calendar/{year}/{month}/{day}/new")
