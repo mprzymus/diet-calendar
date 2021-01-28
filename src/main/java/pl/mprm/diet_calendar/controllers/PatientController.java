@@ -79,6 +79,7 @@ public class PatientController {
     @GetMapping("/calendar/{year}/{month}/{day}/{id}/edit")
     public String showEditMeal(Model model, @PathVariable Long year, @PathVariable Long month, @PathVariable Long day,
                                @PathVariable Long id) {
+        model = userController.addUserDataToModel(model);
         var meal = mealRepository.findById(id);
         if (meal.isEmpty()) {
             return "redirect:/patient/calendar" + year + "/" + month + "/" + day;
@@ -90,12 +91,14 @@ public class PatientController {
     @GetMapping("/calendar/{year}/{month}/{day}/new")
     public String showNewMeal(Model model, @PathVariable Long year, @PathVariable Long month, @PathVariable Long day) {
         var meal = new Posilek();
+        model = userController.addUserDataToModel(model);
         model.addAttribute("meal", meal);
         return "patient/addMeal";
     }
 
     @GetMapping
     public String welcomePage(Model model) {
+        model = userController.addUserDataToModel(model);
         var userName = userService.getUsername();
         var dailyMenu = dailyMenuService.findByDate(LocalDate.now(), userName);
         model.addAttribute("menu", dailyMenu);
