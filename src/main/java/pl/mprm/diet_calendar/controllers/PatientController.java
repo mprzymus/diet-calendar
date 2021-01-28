@@ -41,10 +41,14 @@ public class PatientController {
         var mealsAsList = new ArrayList<>(menu.getPosilki());
         Collections.sort(mealsAsList);
         model.addAttribute("meals", mealsAsList);
+        addDateToModel(model, year, month, day);
+        return "patient/calendar";
+    }
+
+    private void addDateToModel(Model model, Integer year, Integer month, Integer day) {
         model.addAttribute("year", year);
         model.addAttribute("month", month);
         model.addAttribute("day", day);
-        return "patient/calendar";
     }
 
     @GetMapping("/calendar")
@@ -77,8 +81,9 @@ public class PatientController {
     }
 
     @GetMapping("/calendar/{year}/{month}/{day}/{id}/edit")
-    public String showEditMeal(Model model, @PathVariable Long year, @PathVariable Long month, @PathVariable Long day,
+    public String showEditMeal(Model model, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
                                @PathVariable Long id) {
+        addDateToModel(model, year, month, day);
         model = userController.addUserDataToModel(model);
         var meal = mealRepository.findById(id);
         if (meal.isEmpty()) {
@@ -89,8 +94,9 @@ public class PatientController {
     }
 
     @GetMapping("/calendar/{year}/{month}/{day}/new")
-    public String showNewMeal(Model model, @PathVariable Long year, @PathVariable Long month, @PathVariable Long day) {
+    public String showNewMeal(Model model, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day) {
         var meal = new Posilek();
+        addDateToModel(model, year, month, day);
         model = userController.addUserDataToModel(model);
         model.addAttribute("meal", meal);
         return "patient/addMeal";
@@ -98,10 +104,6 @@ public class PatientController {
 
     @GetMapping
     public String welcomePage(Model model) {
-        model = userController.addUserDataToModel(model);
-        var userName = userService.getUsername();
-        var dailyMenu = dailyMenuService.findByDate(LocalDate.now(), userName);
-        model.addAttribute("menu", dailyMenu);
-        return "index";
+        return "redirect:index";
     }
 }
