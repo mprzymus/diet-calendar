@@ -28,7 +28,7 @@ public class IndexController {
             log.debug("User in");
             model = userController.addUserDataToModel(model);
             var userName = userService.getUsername();
-            var dailyMenu = dailyMenuService.findByDate(LocalDate.now(), userName);
+            var dailyMenu = dailyMenuService.findByDate(LocalDate.now(), null);
             model.addAttribute("menu", dailyMenu.getPosilki());
         }
         return "index";

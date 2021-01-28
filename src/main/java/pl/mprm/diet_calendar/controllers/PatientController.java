@@ -74,6 +74,13 @@ public class PatientController {
         return "redirect:/patient/calendar/" + year + "/" + month + "/" + day;
     }
 
+    @GetMapping("/calendar/{year}/{month}/{day}/{id}/delete")
+    public String deleteMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day, @PathVariable Long id) {
+        dailyMenuService.deleteMealById(LocalDate.of(year, month, day), null, id);
+        return "redirect:/patient/calendar/" + year + "/" + month + "/" + day;
+    }
+
+
     @PostMapping("/calendar/{year}/{month}/{day}/new")
     public String addMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
                           @ModelAttribute("meal") @Valid Posilek meal) {
