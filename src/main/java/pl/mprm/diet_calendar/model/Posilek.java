@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Entity
@@ -55,5 +57,11 @@ public class Posilek implements Comparable<Posilek> {
             return result;
         }
         return name.compareTo(posilek.name);
+    }
+
+    public String showTime() {
+        var time = LocalTime.of(godzinaPosilku, minutaPosilku);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        return  time.format(dtf);
     }
 }
