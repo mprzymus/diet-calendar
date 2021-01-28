@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.mprm.diet_calendar.dao.MealRepository;
 import pl.mprm.diet_calendar.model.Posilek;
+import pl.mprm.diet_calendar.model.Skladnik;
 import pl.mprm.diet_calendar.service.DailyMenuService;
 import pl.mprm.diet_calendar.service.UserService;
 
@@ -62,10 +63,17 @@ public class PatientController {
             toUpdateOptional.ifPresent(element -> menu.getPosilki().remove(element));
         }
         //TODO TIGHT NEW MENU WITH CALENDAR
+        //meal.getSkladniki().forEach(skl -> skl.setDanie(meal));
         meal.setDailyMenu(menu);
         menu.getPosilki().add(meal);
         dailyMenuService.save(menu);
         return "redirect:/patient/calendar" + year + "/" + month + "/" + day;
+    }
+
+    @PostMapping("/calendar/{year}/{month}/{day}/new")
+    public String addMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
+                          @ModelAttribute("meal") @Valid Posilek meal) {
+        return editMeal(year, month, day, meal);
     }
 
     @GetMapping("/calendar/{year}/{month}/{day}/{id}/edit")

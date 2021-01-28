@@ -22,7 +22,7 @@ public class Posilek implements Comparable<Posilek> {
     @JoinColumn(name = "jadlospisid")
     private DailyMenu dailyMenu;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "danie")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "danie", fetch = FetchType.EAGER)
     private Collection<Skladnik> skladniki = new HashSet<>();
 
     @Enumerated(value = EnumType.ORDINAL)

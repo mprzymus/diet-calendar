@@ -35,11 +35,10 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     public Product saveCommand(ProductDto command) {
         var product = toProduct.convert(command);
         assert product != null;
-        elementsService.deleteProductsElements(product);
+        product = elementsService.deleteProductsElements(product);
         return productRepository.save(product);
     }
 

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
 import pl.mprm.diet_calendar.model.DailyMenu;
+import pl.mprm.diet_calendar.model.Posilek;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -16,7 +17,9 @@ public class DailyMenuService {
     private final DailyMenuRepository dailyMenuRepository;
 
     public DailyMenu findByDate(LocalDate date, String userName) {
-        return dailyMenuRepository.findByCalendarPacjentLoginAndDate(userName, date).orElse(new DailyMenu());
+        var menu = dailyMenuRepository.findByCalendarPacjentLoginAndDate(userName, date).orElse(new DailyMenu());
+        menu.setDate(date);
+        return menu;
     }
 
     public Map<Integer, DailyMenu> findMenusForMonth(Integer year, Integer month, String userName) {
@@ -30,7 +33,13 @@ public class DailyMenuService {
         return map;
     }
 
-    public void save(DailyMenu menu) {
-        dailyMenuRepository.save(menu);
+    public void saveMeal(DailyMenu menu, Posilek meal) {
+        meal.setDailyMenu(menu);
+        menu.getPosilki().add(meal);
+        save(menu);
+    }
+
+    public DailyMenu save(DailyMenu menu) {
+        return dailyMenuRepository.save(menu);
     }
 }
