@@ -2,6 +2,7 @@ package pl.mprm.diet_calendar.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
 import pl.mprm.diet_calendar.model.DailyMenu;
 import pl.mprm.diet_calendar.model.Posilek;
@@ -41,5 +42,18 @@ public class DailyMenuService {
 
     public DailyMenu save(DailyMenu menu) {
         return dailyMenuRepository.save(menu);
+    }
+
+    @Transactional
+    public void deleteMealById(LocalDate date, String username, Long mealId) {
+        var menu = findByDate(date, username);
+        var mealOptional = menu.getPosilki().stream()
+                .filter(meal -> meal.getId().equals(mealId)).findAny();
+        if (mealOptional.isPresent()) {
+            var meal = mealOptional.get();
+            meal.setDailyMenu(null);
+            menu.getPosilki().remove(meal);
+            save(menu);
+        }
     }
 }
