@@ -21,13 +21,13 @@
                     <a class="nav-link" href="/">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/dietitian/products" th:if="${userName == 'DIETITIAN'}">Produkty</a>
+                    <a class="nav-link" href="/dietitian/products" th:if="${userName == 'diet'}">Produkty</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/open/calc">Kalkulator</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/patient/calendar" th:if="${userName == 'PATIENT'}">Kalendarz</a>
+                    <a class="nav-link" href="/patient/calendar" th:if="${userName == 'user'}">Kalendarz</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout" th:if="${userName != 'anonymousUser'}">Wyloguj</a>

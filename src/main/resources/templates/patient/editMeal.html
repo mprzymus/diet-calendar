@@ -15,26 +15,24 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="/">Strona główna</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dietitian/products" th:if="${ROLE == 'DIETITIAN'}">Produkty</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/open/calc">Kalkulator</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/patient/calendar" th:if="${ROLE == 'PATIENT'}">Kalendarz</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout" th:if="${userName != 'anonymousUser'}">Wyloguj</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login" th:if="${userName == 'anonymousUser'}">Zaloguj</a>
-                </li>
-            </ul>
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Strona główna</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dietitian/products" th:if="${userName == 'diet'}">Produkty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/open/calc">Kalkulator</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/patient/calendar" th:if="${userName == 'user'}">Kalendarz</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" th:if="${userName != 'anonymousUser'}">Wyloguj</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login" th:if="${userName == 'anonymousUser'}">Zaloguj</a>
+            </li>
         </div>
     </nav>
 </header>

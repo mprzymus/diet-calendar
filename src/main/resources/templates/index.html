@@ -25,7 +25,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/open/calc">Kalkulator</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/patient/calendar" th:if="${userName == 'user'}">Kalendarz</a>
                 </li>
                 <li class="nav-item">
@@ -35,10 +35,6 @@
                     <a class="nav-link" href="/login" th:if="${userName == 'anonymousUser'}">Zaloguj</a>
                 </li>
             </ul>
-
-                <div th:if="${userName != 'anonymousUser'} ? '' : 'Witaj, ${userName}'"></div>
-
-
         </div>
     </nav>
 </header>
