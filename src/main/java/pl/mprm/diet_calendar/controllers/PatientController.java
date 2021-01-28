@@ -37,7 +37,7 @@ public class PatientController {
         log.debug("Showing details of day: {}-{}-{}", day, month, year);
         var userName = userService.getUsername();
         userController.addUserDataToModel(model);
-        var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), userName);
+        var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), null);
         var mealsAsList = new ArrayList<>(menu.getPosilki());
         Collections.sort(mealsAsList);
         model.addAttribute("meals", mealsAsList);
@@ -60,7 +60,7 @@ public class PatientController {
     @PostMapping("/calendar/{year}/{month}/{day}/edit")
     public String editMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
                            @ModelAttribute("meal") @Valid Posilek meal) {
-        var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), userService.getUsername());
+        var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), null);
         if (meal.getId() != null) {
             var toUpdateOptional = menu.getPosilki().stream()
                     .filter(saved -> saved.getId().equals(meal.getId())).findAny();
@@ -71,7 +71,7 @@ public class PatientController {
         meal.setDailyMenu(menu);
         menu.getPosilki().add(meal);
         dailyMenuService.save(menu);
-        return "redirect:/patient/calendar" + year + "/" + month + "/" + day;
+        return "redirect:/patient/calendar/" + year + "/" + month + "/" + day;
     }
 
     @PostMapping("/calendar/{year}/{month}/{day}/new")
