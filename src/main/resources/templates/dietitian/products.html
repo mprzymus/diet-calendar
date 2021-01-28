@@ -9,23 +9,23 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Diet Calendar</a>
+        <a class="navbar-brand" href="/">Kalendarz dietetyczny</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Homepage</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Strona główna</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/dietitian/products">Products</a>
+                    <a class="nav-link" href="/dietitian/products">Produkty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/open/calc">Calculator</a>
+                    <a class="nav-link" href="/open/calc">Kalkulator</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/patient/calendar">Calendar</a>
+                    <a class="nav-link" href="/patient/calendar">Kalendarz</a>
                 </li>
             </ul>
         </div>
@@ -35,21 +35,21 @@
 <div class="d-flex justify-content-center">
 <div class="col-md-9">
     <div class="d-flex justify-content-center">
-    <h5>Products</h5>
+    <h5>Produkty</h5>
     </div>
     <hr>
     <div class="card card-body">
-        <a class="btn btn-dark  btn-sm" href="/dietitian/addProduct/new">Add</a>
+        <a class="btn btn-dark  btn-sm" href="/dietitian/addProduct/new">Nowy</a>
         <table class="table table-bordered table-lg">
             <tr>
-                <th>Name</th>
-                <th>Calories</th>
-                <th>Grammage</th>
-                <th>Description</th>
-                <th>Microelements</th>
-                <th>Macroelements</th>
-                <th>Full blown</th>
-                <th>Update</th>
+                <th>Nazwa</th>
+                <th>Kalorie</th>
+                <th>Gramatura</th>
+                <th>Opis</th>
+                <th>Mikroskładniki</th>
+                <th>Makroskładniki</th>
+                <th>Pełnowartościowe</th>
+                <th>Aktualizuj</th>
             </tr>
 
 
@@ -61,7 +61,7 @@
                 <td th:text="${product.mikroskladniki}"></td>
                 <td th:text="${product.makroskladniki}"></td>
                 <td th:text="${product.czyPelnowartosciowy}"></td>
-                <td><a class="btn btn-sm btn-dark" th:href="@{/dietitian/addProduct/{id}(id=${product.id})}">Edit</a></td>
+                <td><a class="btn btn-sm btn-dark" th:href="@{/dietitian/addProduct/{id}(id=${product.id})}">Edytuj</a></td>
             </tr>
 
 

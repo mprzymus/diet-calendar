@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>KD</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/global.css">
 
@@ -10,23 +10,23 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Diet Calendar</a>
+        <a class="navbar-brand" href="/">Kalendarz dietetyczny</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Homepage</a>
+                    <a class="nav-link" href="/">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/dietitian/products">Products</a>
+                    <a class="nav-link" href="/dietitian/products">Produkty</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/open/calc">Calculator</a>
+                    <a class="nav-link" href="/open/calc">Kalkulator</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/patient/calendar">Calendar</a>
+                    <a class="nav-link" href="/patient/calendar">Kalendarz</a>
                 </li>
             </ul>
         </div>
@@ -35,33 +35,34 @@
 <div class="wrapper">
     <section class="left">
         <div class="d-flex justify-content-center">
-            <h2>New Keto diet!</h2>
+            <h2>Nowa Keto dieta!</h2>
         </div>
         <div class="d-flex justify-content-center">
         <p>
-            The ketogenic diet is a very low carb, high fat diet that shares many similarities with the Atkins and low carb diets.
-
-            It involves drastically reducing carbohydrate intake and replacing it with fat. This reduction in carbs puts your body into a metabolic state called ketosis.
-
-            When this happens, your body becomes incredibly efficient at burning fat for energy. It also turns fat into ketones in the liver, which can supply energy for the brain.
-
-            Ketogenic diets can cause significant reductions in blood sugar and insulin levels. This, along with the increased ketones, has some health benefits.
-        </p>
+            Dieta ketogeniczna to sposób odżywiania, który zakłada zwiększenie podaży tłuszczów przy jednoczesnym ograniczeniu spożywania węglowodanów.
+            Aby jednak była skuteczna i nie stanowiła zagrożenia dla organizmu, powinna być przeprowadzana wyłącznie pod kontrolą lekarza i dietetyka.
+        </p><p>
+            W celu przeprowadzenia konsultacji u dietetyka i zaplanowania odżywiania umów się ze specjalistą online.
+            Zaplanowanie telewizyty to sposób na skrócenie czasu oczekiwania na konsultację i pozwala ją zrealizować bez wychodzenia z domu.
+        </p><p>
+            Założenia diety ketogenicznej opierają się w głównej mierze na spożywaniu odpowiedniej ilości tłuszczów,
+            węglowodanów i białek. W standardowej, codziennej diecie większości z nas węglowodany stanowią 50 proc., białka 15 proc.,
+            a tłuszcze 35 proc. wszystkich spożytych posiłków.</p>
         </div>
     </section>
     <section class="right">
         <div class="col-md-9">
             <div class="d-flex justify-content-center">
-            <h5>Today's meals</h5>
+            <h5>Dzisiejszy jadłospis</h5>
             </div>
             <hr>
             <div class="card card-body">
                 <table class="table table-sm">
                     <tr>
-                        <th>Time</th>
-                        <th>Meal</th>
-                        <th>Type</th>
-                        <th>Calories</th>
+                        <th>Czas</th>
+                        <th>Posiłek</th>
+                        <th>Typ</th>
+                        <th>Kalorie</th>
 
                     </tr>
                     <tr th:each="meal : ${menu}">

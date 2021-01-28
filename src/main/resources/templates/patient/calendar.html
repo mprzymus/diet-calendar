@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Calendar</title>
+    <title>Kalendarz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/global.css">
@@ -13,30 +13,31 @@
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Diet Calendar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Homepage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dietitian/products">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/open/calc">Calculator</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/patient/calendar">Calendar</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Kalendarz dietetyczny</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dietitian/products">Produkty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/open/calc">Kalkulator</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/patient/calendar">Kalendarz</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
 
     <div class="wrapper">
         <section class="left">
@@ -52,13 +53,13 @@
                         <i class="fas fa-angle-right next"></i>
                     </div>
                     <div class="weekdays">
-                        <div>Sun</div>
-                        <div>Mon</div>
-                        <div>Tue</div>
-                        <div>Wed</div>
-                        <div>Thu</div>
-                        <div>Fri</div>
-                        <div>Sat</div>
+                        <div>Niedz</div>
+                        <div>Pon</div>
+                        <div>Wt</div>
+                        <div>Śr</div>
+                        <div>Czw</div>
+                        <div>Pt</div>
+                        <div>Sob</div>
                     </div>
                     <div class="days"></div>
                 </div>
@@ -69,27 +70,27 @@
         </section>
         <section class="right">
             <div class="col-md-9">
-                <h5>Meals</h5>
+                <h5>Posiłki</h5>
                 <hr>
                 <div class="card card-body">
-                    <a class="btn btn-dark  btn-sm" th:href="@{/patient/calendar/{year}/{month}/{day}/new (year=${year}, month=${month}, day=${day})}">Add meal</a>
+                    <a class="btn btn-dark  btn-sm" th:href="@{/patient/calendar/{year}/{month}/{day}/new (year=${year}, month=${month}, day=${day})}">Nowy</a>
                     <table class="table table-sm">
                         <tr>
-                            <th>Time</th>
-                            <th>Meal</th>
-                            <th>Type</th>
-                            <th>Calories</th>
-                            <th>Update</th>
-                            <th>Remove</th>
+                            <th>Czas</th>
+                            <th>Posiłek</th>
+                            <th>Typ</th>
+                            <th>Kalorie</th>
+                            <th>Aktualizuj</th>
+                            <th>Usuń</th>
                         </tr>
                         <tr th:each="meal : ${meals}">
                             <td ><div th:text="${meal.godzinaPosilku}"></div><div th:text="${meal.minutaPosilku}"></div></td>
                             <td ><div th:text="${meal.name}"></div></td>
                             <td ><div th:text="${meal.rodzajPosilku}"></div></td>
                             <td><div th:text="${meal.kalorycznosc}"></div></td>
-                            <td><a class="btn btn-sm btn-dark" th:href="@{/patient/calendar/{year}/{month}/{day}/{id}/edit(id=${meal.id}, year=${year}, month=${month}, day=${day})}">Edit</a></td>
+                            <td><a class="btn btn-sm btn-dark" th:href="@{/patient/calendar/{year}/{month}/{day}/{id}/edit(id=${meal.id}, year=${year}, month=${month}, day=${day})}">Edytuj</a></td>
 
-                            <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="">Usuń</a></td>
 
                         </tr>
 
