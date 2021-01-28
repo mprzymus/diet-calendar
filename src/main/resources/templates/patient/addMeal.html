@@ -40,7 +40,9 @@
 </header>
 <div class="d-flex justify-content-center">
     <h1>Formularz dodania produktu</h1>
-    <form action="#" method="POST" th:action="@{/patient/calendar}" th:object="${meal}">
+</div>
+    <div class="d-flex justify-content-center">
+    <form action="#" method="POST" th:action="@{/patient/calendar/{year}/{month}/{day} (id=${meal.id}, year=${year}, month=${month}, day=${day})}" th:object="${meal}">
         <div class="form-group">
             <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
             <label for="godzinaPosilku">Godzina</label>
@@ -60,7 +62,7 @@
             </select>
             <label for="kalorycznosc">Kaloryczność</label>
             <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
-            <input type="submit" class="form-control" value="Submit"/>
+            <input type="submit" class="form-control" value="Dodaj"/>
         </div>
     </form>
 </div>

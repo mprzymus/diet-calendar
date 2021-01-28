@@ -40,6 +40,8 @@
 </header>
 <div class="d-flex justify-content-center">
     <h1>Formularz dodania produktu</h1>
+</div>
+<div class="d-flex justify-content-center">
         <form action="#" method="POST" th:action="@{/dietitian/products}" th:object="${product}">
             <div class="form-group">
                 <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
@@ -50,7 +52,7 @@
                 <label for="kalorycznosc">Kaloryczność</label>
                 <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc" required/>
                 <label for="opis">Opis</label>
-                <textarea rows="3" class="form-control" th:value="*{opis}" id="opis" name="opis" required/>
+                <textarea rows="3" class="form-control" th:value="*{opis}" id="opis" name="opis" required/></textarea>
                 <label for="mikroskladniki">Mikroskladniki</label>
                 <textarea rows="2" class="form-control" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
                 <label for="makroskladniki">Makroskladniki</label>

@@ -60,7 +60,7 @@
         </div>
     </section>
     <section class="right">
-        <div class="col-md-9">
+        <div class="col-md-9" th:if="${userName == 'user'}">
             <div class="d-flex justify-content-center">
             <h5>Dzisiejszy jadłospis</h5>
             </div>
@@ -72,22 +72,32 @@
                         <th>Posiłek</th>
                         <th>Typ</th>
                         <th>Kalorie</th>
-
                     </tr>
                     <tr th:each="meal : ${menu}">
                         <td ><div th:text="${meal.godzinaPosilku}"></div><div th:text="${meal.minutaPosilku}"></div></td>
                         <td ><div th:text="${meal.name}"></div></td>
                         <td ><div th:text="${meal.rodzajPosilku}"></div></td>
                         <td><div th:text="${meal.kalorycznosc}"></div></td>
-
-
                     </tr>
-
-
-
                 </table>
             </div>
         </div>
+            <div class="d-flex justify-content-center" th:if="${userName == 'user'}">
+                <h2>Nowa Keto dieta!</h2>
+            </div>
+            <div class="d-flex justify-content-center">
+
+                <p>
+                    Dieta ketogeniczna to sposób odżywiania, który zakłada zwiększenie podaży tłuszczów przy jednoczesnym ograniczeniu spożywania węglowodanów.
+                    Aby jednak była skuteczna i nie stanowiła zagrożenia dla organizmu, powinna być przeprowadzana wyłącznie pod kontrolą lekarza i dietetyka.
+
+                    W celu przeprowadzenia konsultacji u dietetyka i zaplanowania odżywiania umów się ze specjalistą online.
+                    Zaplanowanie telewizyty to sposób na skrócenie czasu oczekiwania na konsultację i pozwala ją zrealizować bez wychodzenia z domu.
+
+                    Założenia diety ketogenicznej opierają się w głównej mierze na spożywaniu odpowiedniej ilości tłuszczów,
+                    węglowodanów i białek. W standardowej, codziennej diecie większości z nas węglowodany stanowią 50 proc., białka 15 proc.,
+                    a tłuszcze 35 proc. wszystkich spożytych posiłków.</p>
+            </div>
     </section>
 </div>
 </body>
