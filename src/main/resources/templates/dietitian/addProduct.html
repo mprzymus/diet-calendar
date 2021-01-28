@@ -33,19 +33,29 @@
         </div>
     </nav>
 </header>
-<ol>
+<div class="d-flex justify-content-center">
+    <h1>Formularz dodania produktu</h1>
         <form action="#" method="POST" th:action="@{/dietitian/products}" th:object="${product}">
-            <input type="hidden" th:value="*{id}"  id="id" name="id"/>
-            <input type="text" th:value="*{nazwa}" id="nazwa" name="nazwa"/>
-            <input type="text" th:value="*{gramatura}" id="gramatura" name="gramatura"/>
-            <input type="text" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
-            <input type="text" th:value="*{opis}" id="opis" name="opis"/>
-            <textarea rows="1" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
-            <textarea rows="1" th:text="*{makroskladniki}" id="makroskladniki" name="makroskladniki"></textarea>
-            <input type="checkbox" th:value="*{czyPelnowartosciowy}" id="czyPelnowartosciowy" name="czyPelnowartosciowy"/>
-            <input type="submit" value="Submit"/>
+            <div class="form-group">
+                <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
+                <label for="nazwa">Nazwa</label>
+                <input type="text" class="form-control" th:value="*{nazwa}" id="nazwa" name="nazwa" required/>
+                <label for="gramatura">Email address</label>
+                <input type="text" class="form-control" th:value="*{gramatura}" id="gramatura" name="gramatura" required/>
+                <label for="kalorycznosc">Kaloryczność</label>
+                <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc" required/>
+                <label for="opis">Opis</label>
+                <input type="text" class="form-control" th:value="*{opis}" id="opis" name="opis" required/>
+                <label for="mikroskladniki">Mikroskladniki</label>
+                <textarea rows="2" class="form-control" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
+                <label for="makroskladniki">Makroskladniki</label>
+                <textarea rows="2" class="form-control" th:text="*{makroskladniki}" id="makroskladniki" name="makroskladniki"></textarea>
+                <label for="czyPelnowartosciowy">Czy pełnowartościowy</label>
+                <input type="checkbox" checked="checked" class="form-control" th:value="*{czyPelnowartosciowy}" id="czyPelnowartosciowy" name="czyPelnowartosciowy"/>
+                <input type="submit" class="form-control" value="Submit"/>
+            </div>
         </form>
-</ol>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

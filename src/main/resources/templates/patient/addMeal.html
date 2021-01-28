@@ -35,13 +35,13 @@
 <ol>
 
         <form action="#" method="POST" th:action="@{/patient/calendar}" th:object="${meal}">
-            <input type="hidden" th:value="*{id}"  id="id" name="id"/>
-            <input type="text" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku"/>
-            <input type="text" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku"/>
-            <input type="text" th:value="*{name}" id="name" name="name"/>
-            <input type="text" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku"/>
-            <input type="text" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
-            <input type="submit" value="Submit"/>
+            <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
+            <input type="text" class="form-control" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku"/>
+            <input type="text" class="form-control" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku"/>
+            <input type="text" class="form-control" th:value="*{name}" id="name" name="name"/>
+            <input type="text" class="form-control" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku"/>
+            <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
+            <input type="submit" class="form-control" value="Submit"/>
         </form>
 
 </ol>

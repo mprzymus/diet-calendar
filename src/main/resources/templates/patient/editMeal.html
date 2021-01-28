@@ -32,20 +32,18 @@
         </div>
     </nav>
 </header>
-<ol>
-    <li th:each="product: ${products}">
+
         <!--@thymesVar id="product" type="pl.mprm.diet_calendar.controllers.product.ProductCommand"-->
-        <form action="#" method="POST" th:action="@{/dietitian/products}" th:object="${product}">
+        <form action="#" method="POST" th:action="@{/patient/calendar}" th:object="${meal}">
             <input type="hidden" th:value="*{id}"  id="id" name="id"/>
-            <input type="text" th:value="*{nazwa}" id="nazwa" name="nazwa"/>
-            <input type="text" th:value="*{gramatura}" id="gramatura" name="gramatura"/>
+            <input type="text" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku"/>
+            <input type="text" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku"/>
+            <input type="text" th:value="*{name}" id="name" name="name"/>
+            <input type="text" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku"/>
             <input type="text" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
-            <input type="text" th:value="*{opis}" id="opis" name="opis"/>
-            <textarea rows="1" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
             <input type="submit" value="Submit"/>
         </form>
-    </li>
-</ol>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
