@@ -81,7 +81,8 @@
                 </table>
             </div>
         </div>
-            <div class="d-flex justify-content-center" th:if="${userName == 'user'}">
+        <div th:if="${userName != 'user'}">
+            <div class="d-flex justify-content-center" >
                 <h2>Nowa Keto dieta!</h2>
             </div>
             <div class="d-flex justify-content-center">
@@ -97,6 +98,7 @@
                     węglowodanów i białek. W standardowej, codziennej diecie większości z nas węglowodany stanowią 50 proc., białka 15 proc.,
                     a tłuszcze 35 proc. wszystkich spożytych posiłków.</p>
             </div>
+        </div>
     </section>
 </div>
 </body>
