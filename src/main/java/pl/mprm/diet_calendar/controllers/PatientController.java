@@ -70,6 +70,12 @@ public class PatientController {
         return "redirect:/patient/calendar" + year + "/" + month + "/" + day;
     }
 
+    @PostMapping("/calendar/{year}/{month}/{day}/new")
+    public String addMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
+                          @ModelAttribute("meal") @Valid Posilek meal) {
+        return editMeal(year, month, day, meal);
+    }
+
     @GetMapping("/calendar/{year}/{month}/{day}/{id}/edit")
     public String showEditMeal(Model model, @PathVariable Long year, @PathVariable Long month, @PathVariable Long day,
                                @PathVariable Long id) {
