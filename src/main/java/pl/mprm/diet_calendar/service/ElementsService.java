@@ -17,10 +17,11 @@ public class ElementsService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public void deleteProductsElements(Product product) {
-        if (product.getId() != null && productRepository.findById(product.getId()).isEmpty()) {
+    public Product deleteProductsElements(Product product) {
+        if (product.getId() != null && productRepository.findById(product.getId()).isPresent()) {
             microElementRepository.deleteAllByProduct(product);
             macroElementRepository.deleteAllByProduct(product);
         }
+        return product;
     }
 }
