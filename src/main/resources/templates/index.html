@@ -29,15 +29,23 @@
                     <a class="nav-link" href="/patient/calendar" th:if="${ROLE == 'PATIENT'}">Kalendarz</a>
                 </li>
             </ul>
+
+                <div th:if="${USER_NAME != 'anonymousUser'} ? '' : 'Witaj, ${USER_NAME}'"></div>
+                <a class="nav-link" href="/logout" th:if="${USER_NAME != 'anonymousUser'}">Wyloguj</a>
+                    <a class="nav-link" href="/login" th:if="${USER_NAME == 'anonymousUser'}">Zaloguj</a>
+
         </div>
     </nav>
 </header>
+
 <div class="wrapper">
     <section class="left">
+
         <div class="d-flex justify-content-center">
             <h2>Nowa Keto dieta!</h2>
         </div>
         <div class="d-flex justify-content-center">
+
         <p>
             Dieta ketogeniczna to sposób odżywiania, który zakłada zwiększenie podaży tłuszczów przy jednoczesnym ograniczeniu spożywania węglowodanów.
             Aby jednak była skuteczna i nie stanowiła zagrożenia dla organizmu, powinna być przeprowadzana wyłącznie pod kontrolą lekarza i dietetyka.

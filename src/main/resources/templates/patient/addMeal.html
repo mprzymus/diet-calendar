@@ -36,7 +36,7 @@
 
         <form action="#" method="POST" th:action="@{/patient/calendar}" th:object="${meal}">
             <input type="hidden" th:value="*{id}"  id="id" name="id"/>
-            <input type="hidden" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku"/>
+            <input type="text" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku"/>
             <input type="text" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku"/>
             <input type="text" th:value="*{name}" id="name" name="name"/>
             <input type="text" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku"/>

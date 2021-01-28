@@ -5,6 +5,8 @@
     <title>Kalkulator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/global.css">
+    <script src="/js/calculator.js"></script>
+
 </head>
 <body>
 <header>
@@ -33,9 +35,31 @@
 </header>
 <div class="wrapper">
     <section class="left">
-        <p>
 
-        </p>
+    <form action="javascript:calculate('mass', 'height', 'age', 'sex');">
+            <label>Masa ciała:</label>
+            <input type="number" id="mass" name="mass" required min="20" max="600"> kg
+            <br>
+            <label>Wzrost:</label>
+            <input type="number" id="height" name="height" required min="100" max="250"> cm
+            <br>
+            <label>Wiek:</label>
+            <input type="number" id="age" name="age" required min="0" max="120"> lat
+            <br>
+            <label>Płeć:</label>
+            <select id="sex" name="sex" required>
+                <option value="male">Mężczyzna</option>
+                <option value="famale">Kobieta</option>
+            </select>
+            <br>
+            <input type="submit"  value="Oblicz">
+            <br>
+            <br>
+    </form>
+            <div id="result">Zapotrzebowanie kaloryczne wynosi: </div>
+
+
+
     </section>
     <section class="right">
         <div class="d-flex justify-content-center">
