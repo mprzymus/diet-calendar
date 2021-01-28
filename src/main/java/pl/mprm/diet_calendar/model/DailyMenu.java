@@ -22,7 +22,7 @@ public class DailyMenu {
 	@JoinColumn(name = "kalendarzid")
 	private Calendar calendar;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyMenu")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyMenu", fetch = FetchType.EAGER)
 	private Collection<Posilek> posilki = new HashSet<>();
 
 	@Column(name = "data")
