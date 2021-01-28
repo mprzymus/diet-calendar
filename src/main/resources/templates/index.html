@@ -20,19 +20,24 @@
                     <a class="nav-link" href="/">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/dietitian/products" th:if="${ROLE == 'DIETITIAN'}">Produkty</a>
+                    <a class="nav-link" href="/dietitian/products" th:if="${userName == 'diet'}">Produkty</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/open/calc">Kalkulator</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/patient/calendar" th:if="${ROLE == 'PATIENT'}">Kalendarz</a>
+                    <a class="nav-link" href="/patient/calendar" th:if="${userName == 'user'}">Kalendarz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout" th:if="${userName != 'anonymousUser'}">Wyloguj</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" th:if="${userName == 'anonymousUser'}">Zaloguj</a>
                 </li>
             </ul>
 
-                <div th:if="${USER_NAME != 'anonymousUser'} ? '' : 'Witaj, ${USER_NAME}'"></div>
-                <a class="nav-link" href="/logout" th:if="${USER_NAME != 'anonymousUser'}">Wyloguj</a>
-                    <a class="nav-link" href="/login" th:if="${USER_NAME == 'anonymousUser'}">Zaloguj</a>
+                <div th:if="${userName != 'anonymousUser'} ? '' : 'Witaj, ${userName}'"></div>
+
 
         </div>
     </nav>
@@ -49,10 +54,10 @@
         <p>
             Dieta ketogeniczna to sposób odżywiania, który zakłada zwiększenie podaży tłuszczów przy jednoczesnym ograniczeniu spożywania węglowodanów.
             Aby jednak była skuteczna i nie stanowiła zagrożenia dla organizmu, powinna być przeprowadzana wyłącznie pod kontrolą lekarza i dietetyka.
-        </p><p>
+
             W celu przeprowadzenia konsultacji u dietetyka i zaplanowania odżywiania umów się ze specjalistą online.
             Zaplanowanie telewizyty to sposób na skrócenie czasu oczekiwania na konsultację i pozwala ją zrealizować bez wychodzenia z domu.
-        </p><p>
+
             Założenia diety ketogenicznej opierają się w głównej mierze na spożywaniu odpowiedniej ilości tłuszczów,
             węglowodanów i białek. W standardowej, codziennej diecie większości z nas węglowodany stanowią 50 proc., białka 15 proc.,
             a tłuszcze 35 proc. wszystkich spożytych posiłków.</p>

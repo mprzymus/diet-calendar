@@ -20,14 +20,20 @@
                     <a class="nav-link" href="/">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/dietitian/products" th:if="${ROLE == 'DIETITIAN'}">Produkty</a>
+                    <a class="nav-link" href="/dietitian/products" th:if="${userName == 'DIETITIAN'}">Produkty</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/open/calc">Kalkulator</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/patient/calendar" th:if="${ROLE == 'PATIENT'}">Kalendarz</a>
+                    <a class="nav-link" href="/patient/calendar" th:if="${userName == 'PATIENT'}">Kalendarz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout" th:if="${userName != 'anonymousUser'}">Wyloguj</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" th:if="${userName == 'anonymousUser'}">Zaloguj</a>
                 </li>
             </ul>
         </div>
@@ -40,19 +46,19 @@
                 <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
                 <label for="nazwa">Nazwa</label>
                 <input type="text" class="form-control" th:value="*{nazwa}" id="nazwa" name="nazwa" required/>
-                <label for="gramatura">Email address</label>
+                <label for="gramatura">Gramatura</label>
                 <input type="text" class="form-control" th:value="*{gramatura}" id="gramatura" name="gramatura" required/>
                 <label for="kalorycznosc">Kaloryczność</label>
                 <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc" required/>
                 <label for="opis">Opis</label>
-                <input type="text" class="form-control" th:value="*{opis}" id="opis" name="opis" required/>
+                <textarea rows="3" class="form-control" th:value="*{opis}" id="opis" name="opis" required/>
                 <label for="mikroskladniki">Mikroskladniki</label>
                 <textarea rows="2" class="form-control" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
                 <label for="makroskladniki">Makroskladniki</label>
                 <textarea rows="2" class="form-control" th:text="*{makroskladniki}" id="makroskladniki" name="makroskladniki"></textarea>
                 <label for="czyPelnowartosciowy">Czy pełnowartościowy</label>
                 <input type="checkbox" checked="checked" class="form-control" th:value="*{czyPelnowartosciowy}" id="czyPelnowartosciowy" name="czyPelnowartosciowy"/>
-                <input type="submit" class="form-control" value="Submit"/>
+                <input type="submit" class="form-control" value="Dodaj"/>
             </div>
         </form>
 </div>

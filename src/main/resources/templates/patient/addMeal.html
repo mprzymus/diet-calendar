@@ -28,23 +28,47 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/patient/calendar" th:if="${ROLE == 'PATIENT'}">Kalendarz</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout" th:if="${userName != 'anonymousUser'}">Wyloguj</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" th:if="${userName == 'anonymousUser'}">Zaloguj</a>
+                </li>
             </ul>
         </div>
     </nav>
 </header>
-<ol>
-
-        <form action="#" method="POST" th:action="@{/patient/calendar}" th:object="${meal}">
+<div class="d-flex justify-content-center">
+    <h1>Formularz dodania produktu</h1>
+    <form action="#" method="POST" th:action="@{/patient/calendar}" th:object="${meal}">
+        <div class="form-group">
             <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
-            <input type="text" class="form-control" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku"/>
-            <input type="text" class="form-control" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku"/>
+            <label for="godzinaPosilku">Godzina</label>
+            <input type="number" class="form-control" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku" min="0" max="23"/>
+            <label for="minutaPosilku">Minuta</label>
+            <input type="number" class="form-control" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku" min="0" max="59"/>
+            <label for="name">Nazwa</label>
             <input type="text" class="form-control" th:value="*{name}" id="name" name="name"/>
-            <input type="text" class="form-control" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku"/>
+            <label for="rodzajPosilku">Rodzaj posiłku</label>
+            <select type="text" class="form-control" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku">
+                <option>Sniadanie</option>
+                <option>Obiad</option>
+                <option>Kolacja</option>
+                <option>Podwieczorek</option>
+                <option>Deser</option>
+                <option>Przekaska</option>
+            </select>
+            <label for="kalorycznosc">Kaloryczność</label>
             <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc"/>
             <input type="submit" class="form-control" value="Submit"/>
-        </form>
+        </div>
+    </form>
+</div>
 
-</ol>
+
+
+
+
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
