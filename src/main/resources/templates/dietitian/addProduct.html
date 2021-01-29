@@ -58,7 +58,7 @@
                 <label for="makroskladniki">Makroskladniki</label>
                 <textarea rows="2" class="form-control" th:text="*{makroskladniki}" id="makroskladniki" name="makroskladniki"></textarea>
                 <label for="czyPelnowartosciowy">Czy pełnowartościowy</label>
-                <input type="checkbox" checked="checked" class="form-control" th:value="*{czyPelnowartosciowy}" id="czyPelnowartosciowy" name="czyPelnowartosciowy"/>
+                <input type="checkbox" class="form-control" th:checked="*{czyPelnowartosciowy}" id="czyPelnowartosciowy" name="czyPelnowartosciowy"/>
                 <input type="submit" class="form-control" value="Dodaj"/>
             </div>
         </form>

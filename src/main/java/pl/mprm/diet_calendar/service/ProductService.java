@@ -29,7 +29,7 @@ public class ProductService {
         return list;
     }
 
-    public List<ProductDto> findAllProductsAsCommand() {
+    public List<ProductDto> findAllProductAsDTO() {
         return StreamSupport.stream(productRepository.findAll().spliterator(), false)
                 .map(toProductDto::convert)
                 .collect(Collectors.toList());

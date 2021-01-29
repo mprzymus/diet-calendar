@@ -26,7 +26,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public String showProducts(Model model) {
-        var allProducts = productService.findAllProductsAsCommand();
+        var allProducts = productService.findAllProductAsDTO();
         model = userController.addUserDataToModel(model);
         model.addAttribute("products", allProducts);
         return "dietitian/products";
