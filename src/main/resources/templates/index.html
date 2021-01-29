@@ -73,7 +73,7 @@
                         <th>Kalorie</th>
                     </tr>
                     <tr th:each="meal : ${menu}">
-                        <td ><div th:text="${meal.godzinaPosilku}"></div><div th:text="${meal.minutaPosilku}"></div></td>
+                        <td ><div th:text="${meal.showTime}"></div></td>
                         <td ><div th:text="${meal.name}"></div></td>
                         <td ><div th:text="${meal.rodzajPosilku}"></div></td>
                         <td><div th:text="${meal.kalorycznosc}"></div></td>
