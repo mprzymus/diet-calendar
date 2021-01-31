@@ -6,8 +6,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
+import pl.mprm.diet_calendar.model.DailyMenu;
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,5 +56,37 @@ class DailyMenuServiceTest {
     @Test
     void invalidDataTestNullAll() {
         assertThrows(java.lang.NullPointerException.class, () -> dailyMenuService.findMenusForMonth(null, null, null));
+    }
+
+    @Test
+    void findByDateTest() {
+        when(repository.findByCalendarPacjentLoginAndDate(any(), any())).thenReturn(Optional.of(new DailyMenu()));
+
+        var date = LocalDate.now();
+
+        var menu = dailyMenuService.findByDate(date, "userName");
+
+        assertEquals(date, menu.getDate());
+
+        verify(repository).findByCalendarPacjentLoginAndDate(any(), any());
+    }
+
+    @Test
+    void findByNullDateTest() {
+
+        assertThrows(NullPointerException.class, () -> dailyMenuService.findByDate(null, "userName"));
+
+        verify(repository, never()).findByCalendarPacjentLoginAndDate(anyString(),isNull());
+    }
+
+    @Test
+    void findNullUsersDailyMenuTest() {
+        when(repository.findByCalendarPacjentLoginAndDate(isNull(), any())).thenReturn(Optional.of(new DailyMenu()));
+        var date = LocalDate.now();
+        var menu = dailyMenuService.findByDate(date, null);
+
+        assertEquals(date, menu.getDate());
+
+        verify(repository, times(1)).findByCalendarPacjentLoginAndDate(isNull(), any());
     }
 }

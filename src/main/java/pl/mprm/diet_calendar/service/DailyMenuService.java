@@ -18,6 +18,9 @@ public class DailyMenuService {
     private final DailyMenuRepository dailyMenuRepository;
 
     public DailyMenu findByDate(LocalDate date, String userName) {
+        if (date == null) {
+            throw new NullPointerException("Null date");
+        }
         var menu = dailyMenuRepository.findByCalendarPacjentLoginAndDate(userName, date).orElse(new DailyMenu());
         menu.setDate(date);
         return menu;
