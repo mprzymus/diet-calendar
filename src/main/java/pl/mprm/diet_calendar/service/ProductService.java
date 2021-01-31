@@ -42,8 +42,11 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public boolean nameExists(String name) {
-        return productRepository.findAllByName(name).iterator().hasNext();
+    public boolean nameExists(Long id, String name) {
+        var withThisName = productRepository.findAllByName(name);
+        return withThisName.iterator().hasNext() &&
+                StreamSupport.stream(withThisName.spliterator(), false)
+                .allMatch(dbProduct -> !dbProduct.getId().equals(id) && name.equals(dbProduct.getName()));
     }
 
     public ProductDto findDtoById(Long id) {

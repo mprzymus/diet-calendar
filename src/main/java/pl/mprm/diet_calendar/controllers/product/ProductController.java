@@ -54,13 +54,13 @@ public class ProductController {
             bindingResult.getFieldErrors()
                     .forEach(error -> attributes.addFlashAttribute(error.getField(), error.getDefaultMessage()));
         } else {
-            if (product.getId() == null && productService.nameExists(product.getNazwa())) {
+            if (productService.nameExists(product.getId(), product.getNazwa())) {
                 attributes.addFlashAttribute("duplicated", messageConfiguration.getDuplicatedMessage());
             } else {
                 try {
                     productService.saveCommand(product);
                 } catch (IllegalArgumentException ex) {
-                    attributes.addFlashAttribute("invalid_format", messageConfiguration.getDuplicatedMessage());
+                    attributes.addFlashAttribute("invalid_format", messageConfiguration.getInvalidFormat());
                 }
             }
         }
