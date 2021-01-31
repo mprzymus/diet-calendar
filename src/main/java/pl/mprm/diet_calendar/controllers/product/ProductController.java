@@ -60,7 +60,7 @@ public class ProductController {
                 try {
                     productService.saveCommand(product);
                 } catch (IllegalArgumentException ex) {
-                    attributes.addFlashAttribute("invalid_format", messageConfiguration.getDuplicatedMessage());
+                    attributes.addFlashAttribute("invalid_format", messageConfiguration.getInvalidFormat());
                 }
             }
         }
