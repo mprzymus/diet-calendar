@@ -38,21 +38,21 @@ public class ProductCommandToProduct implements Converter<ProductDto, Product> {
         return product;
     }
 
-    private <T> Set<T> toMap(String elements, Function<String[], T> fun) {
+    public <T> Set<T> toMap(String elements, Function<String[], T> fun) {
         var splitted = elements.split("\n");
         return Arrays.stream(splitted).map(element -> element.split(": "))
                 .map(fun)
                 .collect(Collectors.toSet());
     }
 
-    private Makroskladnik createMacroElement(String[] str) {
+    public Makroskladnik createMacroElement(String[] str) {
         checkSize(str);
         var toReturn = new Makroskladnik();
         toReturn.setIlosc(Double.parseDouble(str[1]));
         toReturn.setNazwa(str[0]);
         return toReturn;
     }
-    private Mikroskladnik createMicroElement(String[] str) {
+    public Mikroskladnik createMicroElement(String[] str) {
         checkSize(str);
         var toReturn = new Mikroskladnik();
         toReturn.setIlosc(Double.parseDouble(str[1]));

@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
 import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCommandToProductTest {
     private final ProductCommandToProduct tested = new ProductCommandToProduct();
@@ -95,5 +94,34 @@ class ProductCommandToProductTest {
                 result.getMikroskladniki().stream().map(Mikroskladnik::getIlosc)
                         .anyMatch(name -> name.equals(micro2.getIlosc()))
         );
+    }
+    @Test
+    void createMacroElementEmptyStringTest() {
+        assertThrows(IllegalArgumentException.class, () -> tested.toMap("", tested::createMacroElement));
+    }
+    @Test
+    void createMacroElementRandomStringTest() {
+        assertThrows(IllegalArgumentException.class, () -> tested.toMap("dfchgjcvbnm", tested::createMacroElement));
+    }
+    @Test
+    void createMacroElementCorrectStringTest() {
+        assertThrows(IllegalArgumentException.class, () -> tested.toMap("Fat: 4g", tested::createMacroElement));
+    }
+    @Test
+    void createMacroElementNoColonTest() {
+        assertThrows(IllegalArgumentException.class, () -> tested.toMap("Fat 4g", tested::createMacroElement));
+    }
+    @Test
+    void createMacroElementOnlyElementNameTest() {
+        assertThrows(IllegalArgumentException.class, () -> tested.toMap("dfchgjcvbnm", tested::createMacroElement));
+    }
+    @Test
+    void createMacroElementOnlyGrammageTest() {
+        assertThrows(IllegalArgumentException.class, () -> tested.toMap("5g", tested::createMacroElement));
+    }
+    @Test
+    void createMacroElementTwoElementsTest() {
+        assertThrows(IllegalArgumentException.class, () -> tested.toMap("Fat: 4g, \n" +
+                "Carbohydrates: 10g", tested::createMacroElement));
     }
 }

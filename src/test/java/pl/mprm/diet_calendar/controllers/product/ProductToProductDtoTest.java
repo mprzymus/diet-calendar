@@ -78,4 +78,5 @@ class ProductToProductDtoTest {
         assertTrue(command.getMikroskladniki().contains(micro1AsString));
         assertTrue(command.getMikroskladniki().contains(micro2AsString));
     }
+
 }
