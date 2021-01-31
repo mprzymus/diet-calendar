@@ -3,6 +3,7 @@ const date = new Date();
 const renderCalendar = () => {
   date.setDate(1);
 
+
   const monthDays = document.querySelector(".days");
 
   const lastDay = new Date(
@@ -41,7 +42,7 @@ const renderCalendar = () => {
     "November",
     "December",
   ];
-
+  //date.setMonth(getCookie(date));
   document.querySelector(".date h1").innerHTML = months[date.getMonth()];
 
   document.querySelector(".date p").innerHTML = new Date().toDateString();
@@ -69,18 +70,35 @@ const renderCalendar = () => {
     days += `<div class="next-date">${j}</div>`;
     monthDays.innerHTML = days;
   }
+
 };
 
 document.querySelector(".prev").addEventListener("click", () => {
   date.setMonth(date.getMonth() - 1);
+  //document.cookie = "date="+date.getMonth();
   renderCalendar();
 });
 
 document.querySelector(".next").addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
+  //document.cookie = "date="+date.getMonth();
   renderCalendar();
 });
-
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 
 renderCalendar();
