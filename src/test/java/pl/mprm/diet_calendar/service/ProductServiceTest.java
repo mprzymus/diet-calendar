@@ -87,4 +87,23 @@ class ProductServiceTest {
 
         verify(productRepository, times(1)).findAllByName(anyString());
     }
+
+    @Test
+    void nullNameTest() {
+        when(productRepository.findAllByName(null)).thenReturn(Collections.emptyList());
+
+        assertFalse(productService.nameExists(ID,null));
+
+
+        verify(productRepository, times(1)).findAllByName(null);
+    }
+
+    @Test
+    void nullIdTest() {
+        when(productRepository.findAllByName(NAME)).thenReturn(Collections.emptyList());
+
+        assertFalse(productService.nameExists(null,NAME));
+
+        verify(productRepository, times(1)).findAllByName(NAME);
+    }
 }

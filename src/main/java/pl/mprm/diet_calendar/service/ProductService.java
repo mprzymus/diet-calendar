@@ -46,7 +46,7 @@ public class ProductService {
         var withThisName = productRepository.findAllByName(name);
         return withThisName.iterator().hasNext() &&
                 StreamSupport.stream(withThisName.spliterator(), false)
-                .allMatch(dbProduct -> !dbProduct.getId().equals(id) && name.equals(dbProduct.getName()));
+                .noneMatch(dbProduct -> dbProduct.getId().equals(id));
     }
 
     public ProductDto findDtoById(Long id) {
