@@ -16,6 +16,9 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
+    private final static Long ID = 1L;
+    private final static String NAME = "someName";
+
 
     @Mock
     private ProductRepository productRepository;
@@ -53,16 +56,34 @@ class ProductServiceTest {
     void nameNotExistsTest() {
         when(productRepository.findAllByName(anyString())).thenReturn(Collections.emptyList());
 
-        assertFalse(productService.nameExists("name"));
+        assertFalse(productService.nameExists(1L, "name"));
 
         verify(productRepository, times(1)).findAllByName(anyString());
     }
 
     @Test
-    void nameExists() {
-        when(productRepository.findAllByName(anyString())).thenReturn(List.of(new Product()));
+    void nameExistsInOtherProduct() {
+        var product = new Product();
+        product.setId(ID);
+        product.setName(NAME);
+        when(productRepository.findAllByName(anyString())).thenReturn(List.of(product));
 
-        assertTrue(productService.nameExists("name"));
+        assertTrue(productService.nameExists(ID + 1,NAME));
+
+        verify(productRepository, times(1)).findAllByName(anyString());
+    }
+
+    @Test
+    void nameExistsInSameProduct() {
+        var thisProduct = new Product();
+        thisProduct.setId(ID);
+        thisProduct.setName(NAME);
+        var otherProduct = new Product();
+        otherProduct.setId(ID + 1);
+        otherProduct.setName(NAME);
+        when(productRepository.findAllByName(anyString())).thenReturn(List.of(thisProduct, otherProduct));
+
+        assertFalse(productService.nameExists(ID,NAME));
 
         verify(productRepository, times(1)).findAllByName(anyString());
     }
