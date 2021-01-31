@@ -34,10 +34,25 @@ class DailyMenuServiceTest {
     }
 
     @Test
-    void invalidDataTest() {
+    void invalidDataTestHighMonth() {
         assertThrows(DateTimeException.class, () -> dailyMenuService.findMenusForMonth(2001, 13, "userName"));
-        assertThrows(DateTimeException.class, () -> dailyMenuService.findMenusForMonth(2001, -13, "userName"));
-        assertThrows(DateTimeException.class, () -> dailyMenuService.findMenusForMonth(2001, 0, "userName"));
+    }
 
+    @Test
+    void invalidDataTestNegativeMonth() {
+        assertThrows(DateTimeException.class, () -> dailyMenuService.findMenusForMonth(2001, -13, "userName"));
+    }
+
+    @Test
+    void invalidDataTestNullMonth() {
+        assertThrows(java.lang.NullPointerException.class, () -> dailyMenuService.findMenusForMonth(2001, null, "userName"));
+    }
+    @Test
+    void invalidDataTestNullYear() {
+        assertThrows(java.lang.NullPointerException.class, () -> dailyMenuService.findMenusForMonth(null, 1, "userName"));
+    }
+    @Test
+    void invalidDataTestNullAll() {
+        assertThrows(java.lang.NullPointerException.class, () -> dailyMenuService.findMenusForMonth(null, null, null));
     }
 }
