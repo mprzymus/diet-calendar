@@ -24,6 +24,15 @@ body {
   width: 45%;
   padding: 25px;
 }
+.left2 {
+  width: 35%;
+  padding: 25px;
+}
+
+.right2 {
+  width: 65%;
+  padding: 25px;
+}
 @media only screen and (max-width: 640px) {
   .wrapper {
     display: block;
@@ -36,4 +45,23 @@ body {
     width: 100%;
     box-sizing: border-box;
   }
+}
+.calculatorBlock {
+  background-color: #c2b280;
+  width: 500px;
+  border: 15px solid #654321;
+  padding: 50px;
+  margin: 20px;
+}
+.group {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+
+
+.infotext {
+  display: inline-block;
+  margin: 4px;
+  padding: 4px;
 }

@@ -13,5 +13,5 @@ function calculate(mass, height, age, sex) {
     } else{
         result += 5;
     }
-    document.getElementById("result").innerHTML = "Zapotrzebowanie kaloryczne wynosi: " + parseInt(result) + "kalorii";
+    document.getElementById("result").innerHTML = parseInt(result) + " kcal";
 }
