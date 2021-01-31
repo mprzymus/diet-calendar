@@ -23,7 +23,7 @@ public class DailyMenu {
 	private Calendar calendar;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyMenu", fetch = FetchType.EAGER)
-	private Collection<Posilek> posilki = new HashSet<>();
+	private Set<Posilek> posilki = new HashSet<>();
 
 	@Column(name = "data")
 	private LocalDate date;

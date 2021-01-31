@@ -14,4 +14,5 @@ function calculate(mass, height, age, sex) {
         result += 5;
     }
     document.getElementById("result").innerHTML = parseInt(result) + " kcal";
+
 }

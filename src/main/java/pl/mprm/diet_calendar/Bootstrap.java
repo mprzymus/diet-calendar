@@ -24,7 +24,7 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         var product = new Product();
         product.setOpis("desc");
         product.setName("name");
-        product.setCzyPelnowartosciowy(false);
+        product.setCzyPelnowartosciowy(true);
         product.setKalorycznosc(10.0);
         product.setGramatura(10.0);
 
@@ -38,8 +38,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         micro2.setProduct(product);
         product.getMikroskladniki().add(micro);
         product.getMikroskladniki().add(micro2);
-        repository.save(product);
-        product = new Product();
         repository.save(product);
     }
 }
