@@ -80,7 +80,9 @@
         </section>
         <section class="right">
             <div class="col-md-9">
-                <h5>Posiłki</h5>
+                <div class="d-flex justify-content-center">
+                <h5 th:text="${day+'/'+month+'/'+year+' Posiłki'}"></h5>
+                </div>
                 <hr>
                 <div class="card card-body">
                     <a class="btn btn-dark  btn-sm" th:href="@{/patient/calendar/{year}/{month}/{day}/new (year=${year}, month=${month}, day=${day})}">Nowy</a>
