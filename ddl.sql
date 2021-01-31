@@ -1,4 +1,4 @@
-CREATE TABLE Kalendarz (ID SERIAL NOT NULL, PacjentID int4 NOT NULL, NazwaKalendarza varchar(255), czy_aktywne bool, PRIMARY KEY (ID));
+CREATE TABLE Kalendarz (ID SERIAL NOT NULL, Pacjent_ID int4 NOT NULL, NazwaKalendarza varchar(255), czy_aktywne bool, PRIMARY KEY (ID));
 CREATE TABLE Produkt (ID SERIAL NOT NULL, Kalorycznosc float8, Gramatura float8, Opis varchar(255), czy_pelnowartosciowy bool, Nazwa varchar(255), PRIMARY KEY (ID));
 CREATE TABLE Skladnik (Ilosc float8, ProduktID int4 NOT NULL, PosilekID int4 NOT NULL);
 CREATE TABLE Jadlospis (ID SERIAL NOT NULL, KalendarzID int4 NOT NULL, Data date, DeficytKaloryczny float8, PRIMARY KEY (ID));
@@ -9,7 +9,7 @@ CREATE TABLE Makroskladnik (ID SERIAL NOT NULL, Nazwa varchar(255), Ilosc float8
 CREATE TABLE Mikroskladnik (ID SERIAL NOT NULL, Nazwa varchar(255), Ilosc float8, ProduktID int4 NOT NULL, PRIMARY KEY (ID));
 ALTER TABLE Posilek ADD CONSTRAINT "sklada sie" FOREIGN KEY (JadlospisID) REFERENCES Jadlospis (ID);
 ALTER TABLE Jadlospis ADD CONSTRAINT "jest zlozony z" FOREIGN KEY (KalendarzID) REFERENCES Kalendarz (ID);
-ALTER TABLE Kalendarz ADD CONSTRAINT korzysta FOREIGN KEY (PacjentID) REFERENCES Pacjent (ID);
+ALTER TABLE Kalendarz ADD CONSTRAINT korzysta FOREIGN KEY (Pacjent_ID) REFERENCES Pacjent (ID);
 ALTER TABLE Pacjent ADD CONSTRAINT "korzysta z uslug" FOREIGN KEY (DietetykID) REFERENCES Dietetyk (ID);
 ALTER TABLE Makroskladnik ADD CONSTRAINT mikroskladnik FOREIGN KEY (ProduktID) REFERENCES Produkt (ID);
 ALTER TABLE Mikroskladnik ADD CONSTRAINT makroskladnik FOREIGN KEY (ProduktID) REFERENCES Produkt (ID);
