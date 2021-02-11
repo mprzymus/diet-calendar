@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.mprm.diet_calendar.model.Calendar;
 import pl.mprm.diet_calendar.model.DailyMenu;
-import pl.mprm.diet_calendar.model.Pacjent;
+import pl.mprm.diet_calendar.model.Patient;
 
 import java.time.LocalDate;
 
@@ -29,11 +29,11 @@ class DailyMenuRepositoryTest {
     void setUp() {
         DailyMenu dailyMenu = new DailyMenu();
         Calendar calendar = new Calendar();
-        Pacjent user = new Pacjent();
+        Patient user = new Patient();
         user.setLogin(LOGIN);
         user.setCalendar(calendar);
-        calendar.setPacjent(user);
-        calendar.getJadlospisy().add(dailyMenu);
+        calendar.setPatient(user);
+        calendar.getDailyMenus().add(dailyMenu);
         dailyMenu.setCalendar(calendar);
         dailyMenu.setDate(DATE);
 
@@ -42,21 +42,21 @@ class DailyMenuRepositoryTest {
 
     @Test
     void findByCalendarPacjentLoginAndAndDate() {
-        var result = dailyMenuRepository.findByCalendarPacjentLoginAndDate(LOGIN, DATE);
+        var result = dailyMenuRepository.findByCalendarPatientLoginAndDate(LOGIN, DATE);
         assertTrue(result.isPresent());
         var ob = result.get();
         assertEquals(DATE, ob.getDate());
-        assertEquals(LOGIN, ob.getCalendar().getPacjent().getLogin());
+        assertEquals(LOGIN, ob.getCalendar().getPatient().getLogin());
         System.out.println(ob);
     }
 
     @Test
     void findByCalendarPacjentLoginAndAndDateInvalidData() {
         assertDoesNotThrow(
-                () -> dailyMenuRepository.findByCalendarPacjentLoginAndDate
+                () -> dailyMenuRepository.findByCalendarPatientLoginAndDate
                         (LOGIN + "someText", DATE.minusDays(2)));
 
-        var result = dailyMenuRepository.findByCalendarPacjentLoginAndDate
+        var result = dailyMenuRepository.findByCalendarPatientLoginAndDate
                 (LOGIN + "someText", DATE.minusDays(2));
 
         assertTrue(result.isEmpty());

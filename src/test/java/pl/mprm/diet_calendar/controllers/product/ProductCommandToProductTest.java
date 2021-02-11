@@ -1,8 +1,8 @@
 package pl.mprm.diet_calendar.controllers.product;
 
 import org.junit.jupiter.api.Test;
-import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
-import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.MacroElement;
+import pl.mprm.diet_calendar.model.product_data.MicroElement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,13 +14,13 @@ class ProductCommandToProductTest {
     void nullElementsTest() {
         ProductDto product = new ProductDto();
         product.setId(1L);
-        product.setMakroskladniki(null);
-        product.setMikroskladniki(null);
+        product.setMacroElements(null);
+        product.setMicroElements(null);
 
         var result = tested.convert(product);
 
-        assertTrue(result.getMikroskladniki().isEmpty());
-        assertTrue(result.getMakroskladniki().isEmpty());
+        assertTrue(result.getMicroElements().isEmpty());
+        assertTrue(result.getMacroElements().isEmpty());
         assertEquals(1, result.getId());
     }
 
@@ -31,8 +31,8 @@ class ProductCommandToProductTest {
 
         var result = tested.convert(product);
 
-        assertTrue(result.getMikroskladniki().isEmpty());
-        assertTrue(result.getMakroskladniki().isEmpty());
+        assertTrue(result.getMicroElements().isEmpty());
+        assertTrue(result.getMacroElements().isEmpty());
         assertEquals(1, result.getId());
     }
 
@@ -40,13 +40,13 @@ class ProductCommandToProductTest {
     void emptyElementsTest() {
         ProductDto product = new ProductDto();
         product.setId(1L);
-        product.setMakroskladniki("");
-        product.setMikroskladniki("");
+        product.setMacroElements("");
+        product.setMicroElements("");
 
         var result = tested.convert(product);
 
-        assertTrue(result.getMikroskladniki().isEmpty());
-        assertTrue(result.getMakroskladniki().isEmpty());
+        assertTrue(result.getMicroElements().isEmpty());
+        assertTrue(result.getMacroElements().isEmpty());
         assertEquals(1, result.getId());
     }
 
@@ -54,46 +54,46 @@ class ProductCommandToProductTest {
     void elementsTest() {
         ProductDto product = new ProductDto();
         product.setId(1L);
-        var micro1 = new Mikroskladnik();
-        micro1.setNazwa("m1");
-        micro1.setIlosc(1.0);
-        var micro2 = new Mikroskladnik();
-        micro2.setNazwa("m2");
-        micro2.setIlosc(2.0);
-        var macro = new Makroskladnik();
-        macro.setNazwa("ma");
-        macro.setIlosc(1.0);
+        var micro1 = new MicroElement();
+        micro1.setName("m1");
+        micro1.setAmount(1.0);
+        var micro2 = new MicroElement();
+        micro2.setName("m2");
+        micro2.setAmount(2.0);
+        var macro = new MacroElement();
+        macro.setName("ma");
+        macro.setAmount(1.0);
 
-        product.setMakroskladniki(macro.toString() + "\n");
-        product.setMikroskladniki(micro1.toString() + "\n" + micro2.toString() + "\n");
+        product.setMacroElements(macro.toString() + "\n");
+        product.setMicroElements(micro1.toString() + "\n" + micro2.toString() + "\n");
 
         var result = tested.convert(product);
 
-        assertEquals(1, result.getMakroskladniki().size());
-        assertEquals(2, result.getMikroskladniki().size());
+        assertEquals(1, result.getMacroElements().size());
+        assertEquals(2, result.getMicroElements().size());
         assertTrue(
-                result.getMakroskladniki().stream().map(Makroskladnik::getNazwa)
-                        .anyMatch(name -> name.equals(macro.getNazwa()))
+                result.getMacroElements().stream().map(MacroElement::getName)
+                        .anyMatch(name -> name.equals(macro.getName()))
         );
         assertTrue(
-                result.getMikroskladniki().stream().map(Mikroskladnik::getNazwa)
-                        .anyMatch(name -> name.equals(micro1.getNazwa()))
+                result.getMicroElements().stream().map(MicroElement::getName)
+                        .anyMatch(name -> name.equals(micro1.getName()))
         );
         assertTrue(
-                result.getMikroskladniki().stream().map(Mikroskladnik::getNazwa)
-                        .anyMatch(name -> name.equals(micro2.getNazwa()))
+                result.getMicroElements().stream().map(MicroElement::getName)
+                        .anyMatch(name -> name.equals(micro2.getName()))
         );
         assertTrue(
-                result.getMakroskladniki().stream().map(Makroskladnik::getIlosc)
-                        .anyMatch(name -> name.equals(macro.getIlosc()))
+                result.getMacroElements().stream().map(MacroElement::getAmount)
+                        .anyMatch(name -> name.equals(macro.getAmount()))
         );
         assertTrue(
-                result.getMikroskladniki().stream().map(Mikroskladnik::getIlosc)
-                        .anyMatch(name -> name.equals(micro1.getIlosc()))
+                result.getMicroElements().stream().map(MicroElement::getAmount)
+                        .anyMatch(name -> name.equals(micro1.getAmount()))
         );
         assertTrue(
-                result.getMikroskladniki().stream().map(Mikroskladnik::getIlosc)
-                        .anyMatch(name -> name.equals(micro2.getIlosc()))
+                result.getMicroElements().stream().map(MicroElement::getAmount)
+                        .anyMatch(name -> name.equals(micro2.getAmount()))
         );
     }
 }

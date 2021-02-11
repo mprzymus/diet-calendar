@@ -10,26 +10,30 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Produkt")
+@Table
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private Set<Makroskladnik> makroskladniki = new HashSet<>();
+    private Set<MacroElement> macroElements = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private Set<Mikroskladnik> mikroskladniki = new HashSet<>();
+    private Set<MicroElement> microElements = new HashSet<>();
 
-    private Double kalorycznosc;
+    private Double calories;
 
-    @Column(name = "nazwa")
+    @Column
     private String name;
-    private Double gramatura;
-    private String opis;
 
-    @Column(name = "czy_pelnowartosciowy")
-    private Boolean czyPelnowartosciowy;
+    @Column
+    private Double grams;
+
+    @Column
+    private String description;
+
+    @Column
+    private Boolean isNutritious;
 
 }

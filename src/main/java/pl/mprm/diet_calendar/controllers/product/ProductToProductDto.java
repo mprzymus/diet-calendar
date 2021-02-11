@@ -15,20 +15,20 @@ public class ProductToProductDto implements Converter<Product, ProductDto> {
     public ProductDto convert(Product source) {
         var command = new ProductDto();
         command.setId(source.getId());
-        command.setGramatura(source.getGramatura());
-        command.setNazwa(source.getName());
-        command.setOpis(source.getOpis());
-        command.setCzyPelnowartosciowy(source.getCzyPelnowartosciowy());
-        command.setKalorycznosc(source.getKalorycznosc());
-        if (source.getMakroskladniki() != null) {
-            command.setMakroskladniki(mapToString(source.getMakroskladniki()));
+        command.setGrams(source.getGrams());
+        command.setName(source.getName());
+        command.setDescription(source.getDescription());
+        command.setIsNutritious(source.getIsNutritious());
+        command.setCalories(source.getCalories());
+        if (source.getMacroElements() != null) {
+            command.setMacroElements(mapToString(source.getMacroElements()));
         } else {
-            command.setMakroskladniki("");
+            command.setMacroElements("");
         }
-        if (source.getMikroskladniki() != null) {
-            command.setMikroskladniki(mapToString(source.getMikroskladniki()));
+        if (source.getMicroElements() != null) {
+            command.setMicroElements(mapToString(source.getMicroElements()));
         } else {
-            command.setMikroskladniki("");
+            command.setMicroElements("");
         }
         return command;
     }

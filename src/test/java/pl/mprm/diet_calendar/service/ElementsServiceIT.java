@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.parameters.P;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mprm.diet_calendar.dao.ProductRepository;
-import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
-import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.MacroElement;
+import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import pl.mprm.diet_calendar.model.product_data.Product;
 
 import java.util.*;
@@ -38,20 +37,20 @@ class ElementsServiceIT {
     @Test
     void deleteExistingProductElements() {
         var product = new Product();
-        var mi1 = new Mikroskladnik();
-        var mi2 = new Mikroskladnik();
-        var ma1 = new Makroskladnik();
-        var ma2 = new Makroskladnik();
+        var mi1 = new MicroElement();
+        var mi2 = new MicroElement();
+        var ma1 = new MacroElement();
+        var ma2 = new MacroElement();
 
-        product.setMakroskladniki(Set.of(ma1, ma2));
-        product.setMikroskladniki(Set.of(mi1, mi2));
+        product.setMacroElements(Set.of(ma1, ma2));
+        product.setMicroElements(Set.of(mi1, mi2));
 
         product = productRepository.save(product);
 
         elementsService.deleteProductsElements(product);
 
-        product.setMikroskladniki(new HashSet<>());
-        product.setMakroskladniki(new HashSet<>());
+        product.setMicroElements(new HashSet<>());
+        product.setMacroElements(new HashSet<>());
         product = productRepository.save(product);
 
         product = productRepository.findById(product.getId()).get();
@@ -59,8 +58,8 @@ class ElementsServiceIT {
 
         var saved = productRepository.findById(product.getId()).get();
 
-        assertEquals(0, saved.getMakroskladniki().size());
-        assertEquals(0, saved.getMikroskladniki().size());
+        assertEquals(0, saved.getMacroElements().size());
+        assertEquals(0, saved.getMicroElements().size());
 
 
     }

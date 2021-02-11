@@ -15,52 +15,53 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Posilek implements Comparable<Posilek> {
+@Table
+public class Meal implements Comparable<Meal> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(targetEntity = DailyMenu.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "jadlospisid")
+    @JoinColumn(name = "daily_menu_id")
     private DailyMenu dailyMenu;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "danie", fetch = FetchType.EAGER)
-    private Collection<Skladnik> skladniki = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "meal", fetch = FetchType.EAGER)
+    private Collection<Ingredient> ingredients = new HashSet<>();
 
     @Enumerated(value = EnumType.ORDINAL)
-    private RodzajPosilku rodzajPosilku;
+    private MealType mealType;
 
     @NotNull
     @Min(0)
     @Max(23)
-    private Integer godzinaPosilku;
+    private Integer hour;
 
     @NotNull
     @Min(0)
     @Max(59)
-    private Integer minutaPosilku;
+    private Integer minute;
 
     @Min(0)
-    private Double kalorycznosc;
+    private Double calories;
 
-    @Column(name = "nazwa")
+    @Column
     private String name;
 
     @Override
-    public int compareTo(Posilek posilek) {
-        int result = godzinaPosilku.compareTo(posilek.godzinaPosilku);
+    public int compareTo(Meal meal) {
+        int result = hour.compareTo(meal.hour);
         if (result != 0) {
             return result;
         }
-        result = minutaPosilku.compareTo(posilek.minutaPosilku);
+        result = minute.compareTo(meal.minute);
         if (result != 0) {
             return result;
         }
-        return name.compareTo(posilek.name);
+        return name.compareTo(meal.name);
     }
 
     public String showTime() {
-        var time = LocalTime.of(godzinaPosilku, minutaPosilku);
+        var time = LocalTime.of(hour, minute);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
         return  time.format(dtf);
     }

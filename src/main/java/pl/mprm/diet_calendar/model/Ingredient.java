@@ -7,20 +7,19 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Skladnik implements Serializable {
+@Data
+public class Ingredient implements Serializable {
 
 	@Id
-	@ManyToOne(targetEntity = Posilek.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "posilekid")
-	private Posilek danie;
+	@ManyToOne(targetEntity = Meal.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "meal_id")
+	private Meal meal;
 
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "produkt_id")
-	private Product produkty;
-	private Double ilosc;
+	private Product product;
+	private Double amount;
 }

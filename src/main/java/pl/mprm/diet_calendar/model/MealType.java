@@ -1,6 +1,6 @@
 package pl.mprm.diet_calendar.model;
 
-public enum RodzajPosilku {
+public enum MealType {
 	Sniadanie,
 	Obiad,
 	Kolacja,

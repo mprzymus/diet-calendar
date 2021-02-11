@@ -10,7 +10,8 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pacjent {
+@Table
+public class Patient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -18,20 +19,20 @@ public class Pacjent {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Calendar calendar;
 
-	@ManyToOne(targetEntity = Dietetyk.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "dietetykid")
-	private Dietetyk dietetyk;
+	@ManyToOne(targetEntity = Dietitian.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "dietitian_id")
+	private Dietitian dietitian;
 
 	@Enumerated(value = EnumType.ORDINAL)
-	private WysilekFizyczny poziomAktywnosci;
+	private PhysicalActivity physicalActivity;
 
-	private Double waga;
-	private Double wzrost;
-	private Double zapotrzebowanieKaloryczne;
-	private Boolean uzytkownikPremium;
+	private Double weight;
+	private Double height;
+	private Double caloricDemand;
+	private Boolean isPremium;
 
 	@Enumerated(value = EnumType.STRING)
-	private Plec plec;
+	private Sex sex;
 
 	private LocalDate dataUrodzenia;
 

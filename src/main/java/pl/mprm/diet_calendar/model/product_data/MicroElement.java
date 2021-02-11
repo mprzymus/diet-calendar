@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mikroskladnik {
+public class MicroElement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,11 +18,11 @@ public class Mikroskladnik {
     @JoinColumn(name = "produktid")
     private Product product;
 
-    private String nazwa;
-    private Double ilosc;
+    private String name;
+    private Double amount;
 
     @Override
     public String toString() {
-        return ElementUtils.generateElementString(nazwa, ilosc);
+        return ElementUtils.generateElementString(name, amount);
     }
 }

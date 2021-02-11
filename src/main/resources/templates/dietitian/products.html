@@ -60,13 +60,13 @@
 
 
             <tr th:each="product : ${products}">
-                <td><div th:text="${product.nazwa}"></div></td>
-                <td><span th:text="${product.kalorycznosc + ' kcal'} "></span></td>
-                <td><span th:text="${product.gramatura} + ' g'"></span></td>
-                <td th:text="${product.opis}"></td>
-                <td th:text="${product.mikroskladniki}"></td>
-                <td th:text="${product.makroskladniki}"></td>
-                <td th:text="${product.czyPelnowartosciowy} ? 'Tak' : 'Nie'"></td>
+                <td><div th:text="${product.getName}"></div></td>
+                <td><span th:text="${product.getCalories + ' kcal'} "></span></td>
+                <td><span th:text="${product.getGrams} + ' g'"></span></td>
+                <td th:text="${product.getDescription}"></td>
+                <td th:text="${product.getMicroElements}"></td>
+                <td th:text="${product.getMacroElements}"></td>
+                <td th:text="${product.getIsNutritious} ? 'Tak' : 'Nie'"></td>
                 <td><a class="btn btn-sm btn-dark" th:href="@{/dietitian/addProduct/{id}(id=${product.id})}">Edytuj</a></td>
             </tr>
 

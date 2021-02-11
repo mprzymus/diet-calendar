@@ -1,6 +1,6 @@
 package pl.mprm.diet_calendar.model;
 
-public enum Plec {
+public enum Sex {
     WOMAN,
     MAN,
     OTHER

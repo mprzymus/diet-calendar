@@ -9,8 +9,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mprm.diet_calendar.dao.ProductRepository;
-import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
-import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.MacroElement;
+import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import pl.mprm.diet_calendar.model.product_data.Product;
 
 import java.util.Set;
@@ -37,14 +37,14 @@ public class ProductServiceIT {
     @Test
     void saveWithProductWithElementsTest() {
         var prod = new Product();
-        var microElement1 = new Mikroskladnik();
-        var microElement2 = new Mikroskladnik();
+        var microElement1 = new MicroElement();
+        var microElement2 = new MicroElement();
 
-        var macroElement1 = new Makroskladnik();
-        var macroElement2 = new Makroskladnik();
+        var macroElement1 = new MacroElement();
+        var macroElement2 = new MacroElement();
 
-        prod.setMakroskladniki(Set.of(macroElement1, macroElement2));
-        prod.setMikroskladniki(Set.of(microElement1, microElement2));
+        prod.setMacroElements(Set.of(macroElement1, macroElement2));
+        prod.setMicroElements(Set.of(microElement1, microElement2));
 
         productRepository.save(prod);
 
@@ -52,8 +52,8 @@ public class ProductServiceIT {
         var prodFromDb = allProd.get(0);
 
         assertEquals(1, allProd.size());
-        assertEquals(2, prodFromDb.getMikroskladniki().size());
-        assertEquals(2, prodFromDb.getMakroskladniki().size());
+        assertEquals(2, prodFromDb.getMicroElements().size());
+        assertEquals(2, prodFromDb.getMacroElements().size());
     }
 
     @Test

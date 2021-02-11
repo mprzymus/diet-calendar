@@ -54,7 +54,7 @@ public class ProductController {
             bindingResult.getFieldErrors()
                     .forEach(error -> attributes.addFlashAttribute(error.getField(), error.getDefaultMessage()));
         } else {
-            if (productService.nameExists(product.getId(), product.getNazwa())) {
+            if (productService.nameExists(product.getId(), product.getName())) {
                 attributes.addFlashAttribute("duplicated", messageConfiguration.getDuplicatedMessage());
             } else {
                 try {

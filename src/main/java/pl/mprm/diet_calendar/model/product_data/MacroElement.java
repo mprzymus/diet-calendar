@@ -9,20 +9,20 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Makroskladnik {
+public class MacroElement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne(targetEntity = Product.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "produktid")
+	@JoinColumn(name = "product_id")
 	private Product product;
 
-	private String nazwa;
-	private Double ilosc;
+	private String name;
+	private Double amount;
 
 	@Override
 	public String toString() {
-		return ElementUtils.generateElementString(nazwa, ilosc);
+		return ElementUtils.generateElementString(name, amount);
 	}
 }

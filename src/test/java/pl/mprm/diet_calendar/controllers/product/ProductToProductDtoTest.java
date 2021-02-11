@@ -1,8 +1,8 @@
 package pl.mprm.diet_calendar.controllers.product;
 
 import org.junit.jupiter.api.Test;
-import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
-import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.MacroElement;
+import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import pl.mprm.diet_calendar.model.product_data.Product;
 
 import java.util.Set;
@@ -17,13 +17,13 @@ class ProductToProductDtoTest {
     void nullElementsTest() {
         Product product = new Product();
         product.setId(1L);
-        product.setMakroskladniki(null);
-        product.setMikroskladniki(null);
+        product.setMacroElements(null);
+        product.setMicroElements(null);
 
         var result = tested.convert(product);
 
-        assertEquals("", result.getMikroskladniki());
-        assertEquals("", result.getMakroskladniki());
+        assertEquals("", result.getMicroElements());
+        assertEquals("", result.getMacroElements());
         assertEquals(1, result.getId());
     }
 
@@ -34,8 +34,8 @@ class ProductToProductDtoTest {
 
         var result = tested.convert(product);
 
-        assertEquals("", result.getMikroskladniki());
-        assertEquals("", result.getMakroskladniki());
+        assertEquals("", result.getMicroElements());
+        assertEquals("", result.getMacroElements());
         assertEquals(1, result.getId());
     }
 
@@ -43,13 +43,13 @@ class ProductToProductDtoTest {
     void emptyElementsTest() {
         Product product = new Product();
         product.setId(1L);
-        product.setMakroskladniki(Set.of(new Makroskladnik()));
-        product.setMikroskladniki(Set.of(new Mikroskladnik()));
+        product.setMacroElements(Set.of(new MacroElement()));
+        product.setMicroElements(Set.of(new MicroElement()));
 
         var result = tested.convert(product);
 
-        assertTrue(result.getMikroskladniki().isBlank());
-        assertTrue(result.getMakroskladniki().isBlank());
+        assertTrue(result.getMicroElements().isBlank());
+        assertTrue(result.getMacroElements().isBlank());
         assertEquals(1, result.getId());
     }
 
@@ -57,25 +57,25 @@ class ProductToProductDtoTest {
     void elementsTest() {
         Product product = new Product();
         product.setId(1L);
-        var micro1 = new Mikroskladnik();
-        micro1.setNazwa("m1");
-        micro1.setIlosc(1.0);
-        var micro2 = new Mikroskladnik();
-        micro2.setNazwa("m2");
-        micro2.setIlosc(2.0);
-        var macro = new Makroskladnik();
-        macro.setNazwa("ma");
-        macro.setIlosc(1.0);
+        var micro1 = new MicroElement();
+        micro1.setName("m1");
+        micro1.setAmount(1.0);
+        var micro2 = new MicroElement();
+        micro2.setName("m2");
+        micro2.setAmount(2.0);
+        var macro = new MacroElement();
+        macro.setName("ma");
+        macro.setAmount(1.0);
 
-        product.setMakroskladniki(Set.of(macro));
-        product.setMikroskladniki(Set.of(micro1, micro2));
+        product.setMacroElements(Set.of(macro));
+        product.setMicroElements(Set.of(micro1, micro2));
 
         var command = tested.convert(product);
-        var micro1AsString = micro1.getNazwa() + ": " + micro1.getIlosc().toString() + "\n";
-        var micro2AsString = micro2.getNazwa() + ": " + micro2.getIlosc().toString() + "\n";
-        var macroAsString = macro.getNazwa() + ": " + macro.getIlosc().toString() + "\n";
-        assertEquals(macroAsString, command.getMakroskladniki());
-        assertTrue(command.getMikroskladniki().contains(micro1AsString));
-        assertTrue(command.getMikroskladniki().contains(micro2AsString));
+        var micro1AsString = micro1.getName() + ": " + micro1.getAmount().toString() + "\n";
+        var micro2AsString = micro2.getName() + ": " + micro2.getAmount().toString() + "\n";
+        var macroAsString = macro.getName() + ": " + macro.getAmount().toString() + "\n";
+        assertEquals(macroAsString, command.getMacroElements());
+        assertTrue(command.getMicroElements().contains(micro1AsString));
+        assertTrue(command.getMicroElements().contains(micro2AsString));
     }
 }

@@ -10,19 +10,22 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Kalendarz")
+@Table
 public class Calendar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private Pacjent pacjent;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "calendar")
-	private Collection<DailyMenu> jadlospisy = new HashSet<>();
-	private String nazwaKalendarza;
+	private Patient patient;
 
-	@Column(name = "czy_aktywne")
-	private Boolean czyAktywne;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "calendar")
+	private Collection<DailyMenu> dailyMenus = new HashSet<>();
+
+	@Column
+	private String name;
+
+	@Column
+	private Boolean isActive;
 
 }

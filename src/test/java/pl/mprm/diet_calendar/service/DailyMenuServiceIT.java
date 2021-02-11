@@ -4,16 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
 import pl.mprm.diet_calendar.model.DailyMenu;
-import pl.mprm.diet_calendar.model.Posilek;
+import pl.mprm.diet_calendar.model.Meal;
 
-import javax.validation.ConstraintViolationException;
-import java.awt.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -52,9 +49,9 @@ class DailyMenuServiceIT {
     @Test
     void saveNewMeal() {
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(POSITIVE_HOUR);
-        meal.setMinutaPosilku(POSITIVE_MINUTE);
+        var meal = new Meal();
+        meal.setHour(POSITIVE_HOUR);
+        meal.setMinute(POSITIVE_MINUTE);
 
         dailyMenuService.saveMeal(menu, meal);
 
@@ -63,15 +60,15 @@ class DailyMenuServiceIT {
 
         assertEquals(1, result.size());
         var saved_menu = result.get(0);
-        assertEquals(1, saved_menu.getPosilki().size());
+        assertEquals(1, saved_menu.getMeals().size());
     }
 
     @Test
     void saveMeal() {
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(POSITIVE_HOUR);
-        meal.setMinutaPosilku(POSITIVE_MINUTE);
+        var meal = new Meal();
+        meal.setHour(POSITIVE_HOUR);
+        meal.setMinute(POSITIVE_MINUTE);
         dailyMenuService.save(menu);
 
         dailyMenuService.saveMeal(menu, meal);
@@ -81,14 +78,14 @@ class DailyMenuServiceIT {
 
         assertEquals(1, result.size());
         var saved_menu = result.get(0);
-        assertEquals(1, saved_menu.getPosilki().size());
+        assertEquals(1, saved_menu.getMeals().size());
     }
     @Test
     void saveNewMealMaxHour() {
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(MAX_HOUR);
-        meal.setMinutaPosilku(POSITIVE_MINUTE);
+        var meal = new Meal();
+        meal.setHour(MAX_HOUR);
+        meal.setMinute(POSITIVE_MINUTE);
 
         dailyMenuService.saveMeal(menu, meal);
 
@@ -97,15 +94,15 @@ class DailyMenuServiceIT {
 
         assertEquals(1, result.size());
         var saved_menu = result.get(0);
-        assertEquals(1, saved_menu.getPosilki().size());
+        assertEquals(1, saved_menu.getMeals().size());
     }
 
     @Test
     void saveNewMealMaxMinute() {
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(POSITIVE_HOUR);
-        meal.setMinutaPosilku(MAX_MINUTE);
+        var meal = new Meal();
+        meal.setHour(POSITIVE_HOUR);
+        meal.setMinute(MAX_MINUTE);
         dailyMenuService.save(menu);
 
         dailyMenuService.saveMeal(menu, meal);
@@ -115,14 +112,14 @@ class DailyMenuServiceIT {
 
         assertEquals(1, result.size());
         var saved_menu = result.get(0);
-        assertEquals(1, saved_menu.getPosilki().size());
+        assertEquals(1, saved_menu.getMeals().size());
     }
     @Test
     void saveNewMealZeroMinute() {
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(POSITIVE_HOUR);
-        meal.setMinutaPosilku(ZERO_MINUTE);
+        var meal = new Meal();
+        meal.setHour(POSITIVE_HOUR);
+        meal.setMinute(ZERO_MINUTE);
         dailyMenuService.save(menu);
 
         dailyMenuService.saveMeal(menu, meal);
@@ -132,15 +129,15 @@ class DailyMenuServiceIT {
 
         assertEquals(1, result.size());
         var saved_menu = result.get(0);
-        assertEquals(1, saved_menu.getPosilki().size());
+        assertEquals(1, saved_menu.getMeals().size());
     }
     @Test
     void saveMealNegativeHour() {
 
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(NEGATIVE_HOUR);
-        meal.setMinutaPosilku(POSITIVE_MINUTE);
+        var meal = new Meal();
+        meal.setHour(NEGATIVE_HOUR);
+        meal.setMinute(POSITIVE_MINUTE);
         dailyMenuService.save(menu);
         Exception exception = assertThrows(
                 javax.validation.ConstraintViolationException.class,
@@ -159,9 +156,9 @@ class DailyMenuServiceIT {
     @Test
     void saveMealZeroHour() {
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(ZERO_HOUR);
-        meal.setMinutaPosilku(POSITIVE_MINUTE);
+        var meal = new Meal();
+        meal.setHour(ZERO_HOUR);
+        meal.setMinute(POSITIVE_MINUTE);
         dailyMenuService.save(menu);
 
         dailyMenuService.saveMeal(menu, meal);
@@ -171,15 +168,15 @@ class DailyMenuServiceIT {
 
         assertEquals(1, result.size());
         var saved_menu = result.get(0);
-        assertEquals(1, saved_menu.getPosilki().size());
+        assertEquals(1, saved_menu.getMeals().size());
     }
     @Test
     void saveMealHighHour() {
 
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(HIGH_HOUR);
-        meal.setMinutaPosilku(POSITIVE_MINUTE);
+        var meal = new Meal();
+        meal.setHour(HIGH_HOUR);
+        meal.setMinute(POSITIVE_MINUTE);
         dailyMenuService.save(menu);
         Exception exception = assertThrows(
                 javax.validation.ConstraintViolationException.class,
@@ -199,9 +196,9 @@ class DailyMenuServiceIT {
     void saveMealLowMinute() {
 
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(POSITIVE_HOUR);
-        meal.setMinutaPosilku(NEGATIVE_MINUTE);
+        var meal = new Meal();
+        meal.setHour(POSITIVE_HOUR);
+        meal.setMinute(NEGATIVE_MINUTE);
         dailyMenuService.save(menu);
         Exception exception = assertThrows(
                 javax.validation.ConstraintViolationException.class,
@@ -221,9 +218,9 @@ class DailyMenuServiceIT {
     void saveMealHighMinute() {
 
         var menu = new DailyMenu();
-        var meal = new Posilek();
-        meal.setGodzinaPosilku(POSITIVE_HOUR);
-        meal.setMinutaPosilku(HIGH_MINUTE);
+        var meal = new Meal();
+        meal.setHour(POSITIVE_HOUR);
+        meal.setMinute(HIGH_MINUTE);
         dailyMenuService.save(menu);
         Exception exception = assertThrows(
                 javax.validation.ConstraintViolationException.class,

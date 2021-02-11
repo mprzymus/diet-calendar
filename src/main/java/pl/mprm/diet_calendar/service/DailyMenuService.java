@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
 import pl.mprm.diet_calendar.model.DailyMenu;
-import pl.mprm.diet_calendar.model.Posilek;
+import pl.mprm.diet_calendar.model.Meal;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -21,7 +21,7 @@ public class DailyMenuService {
         if (date == null) {
             throw new NullPointerException("Null date");
         }
-        var menu = dailyMenuRepository.findByCalendarPacjentLoginAndDate(userName, date).orElse(new DailyMenu());
+        var menu = dailyMenuRepository.findByCalendarPatientLoginAndDate(userName, date).orElse(new DailyMenu());
         menu.setDate(date);
         return menu;
     }
@@ -37,9 +37,9 @@ public class DailyMenuService {
         return map;
     }
 
-    public void saveMeal(DailyMenu menu, Posilek meal) {
+    public void saveMeal(DailyMenu menu, Meal meal) {
         meal.setDailyMenu(menu);
-        menu.getPosilki().add(meal);
+        menu.getMeals().add(meal);
         save(menu);
     }
 
@@ -50,12 +50,12 @@ public class DailyMenuService {
     @Transactional
     public void deleteMealById(LocalDate date, String username, Long mealId) {
         var menu = findByDate(date, username);
-        var mealOptional = menu.getPosilki().stream()
+        var mealOptional = menu.getMeals().stream()
                 .filter(meal -> meal.getId().equals(mealId)).findAny();
         if (mealOptional.isPresent()) {
             var meal = mealOptional.get();
             meal.setDailyMenu(null);
-            menu.getPosilki().remove(meal);
+            menu.getMeals().remove(meal);
             save(menu);
         }
     }

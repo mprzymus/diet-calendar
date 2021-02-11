@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface DailyMenuRepository extends CrudRepository<DailyMenu, Long> {
     Optional<DailyMenu> findByCalendarAndDate(Calendar calendar, LocalDate date);
-    Optional<DailyMenu> findByCalendarPacjentLoginAndDate(String calendarPacjentLogin, LocalDate date);
+    Optional<DailyMenu> findByCalendarPatientLoginAndDate(String calendarPatientLogin, LocalDate date);
 }

@@ -46,19 +46,19 @@
             <div class="form-group">
                 <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
                 <label for="nazwa">Nazwa</label>
-                <input type="text" class="form-control" th:value="*{nazwa}" id="nazwa" name="nazwa" required/>
+                <input type="text" class="form-control" th:value="*{getName}" id="nazwa" name="name" required/>
                 <label for="gramatura">Gramatura</label>
-                <input type="text" class="form-control" th:value="*{gramatura}" id="gramatura" name="gramatura" required/>
+                <input type="text" class="form-control" th:value="*{getGrams}" id="gramatura" name="grams" required/>
                 <label for="kalorycznosc">Kaloryczność</label>
-                <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc" required/>
+                <input type="text" class="form-control" th:value="*{getCalories}" id="kalorycznosc" name="calories" required/>
                 <label for="opis">Opis</label>
-                <textarea rows="2" class="form-control" th:text="*{opis}" id="opis" name="opis" required/></textarea>
+                <textarea rows="2" class="form-control" th:text="*{getDescription}" id="opis" name="description" required></textarea>
                 <label for="mikroskladniki">Mikroskladniki</label>
-                <textarea rows="2" class="form-control" th:text="*{mikroskladniki}" id="mikroskladniki" name="mikroskladniki"></textarea>
+                <textarea rows="2" class="form-control" th:text="*{getMicroElements}" id="mikroskladniki" name="microElements"></textarea>
                 <label for="makroskladniki">Makroskladniki</label>
-                <textarea rows="2" class="form-control" th:text="*{makroskladniki}" id="makroskladniki" name="makroskladniki"></textarea>
+                <textarea rows="2" class="form-control" th:text="*{getMacroElements}" id="makroskladniki" name="macroElements"></textarea>
                 <label for="czyPelnowartosciowy">Czy pełnowartościowy</label>
-                <input type="checkbox" class="form-control" th:checked="*{czyPelnowartosciowy}" id="czyPelnowartosciowy" name="czyPelnowartosciowy"/>
+                <input type="checkbox" class="form-control" th:checked="*{getIsNutritious}" id="czyPelnowartosciowy" name="isNutritious"/>
                 <input type="submit" class="btn btn-info" value="Dodaj"/>
             </div>
         </form>

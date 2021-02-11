@@ -11,14 +11,14 @@ import java.util.HashSet;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Dietetyk {
+public class Dietitian {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dietetyk", targetEntity = Pacjent.class)
-	private Collection<Pacjent> pacjenci = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dietitian", targetEntity = Patient.class)
+	private Collection<Patient> patients = new HashSet<>();
 
 	private String login;
 	private String password;

@@ -27,12 +27,12 @@ class DailyMenuServiceTest {
 
     @Test
     void validMonthTest() {
-        when(repository.findByCalendarPacjentLoginAndDate(anyString(), any())).thenReturn(Optional.empty());
+        when(repository.findByCalendarPatientLoginAndDate(anyString(), any())).thenReturn(Optional.empty());
 
         var result = dailyMenuService.findMenusForMonth(2001, 11, "userName");
 
         assertEquals(30, result.size());
-        verify(repository, times(30)).findByCalendarPacjentLoginAndDate(anyString(), any());
+        verify(repository, times(30)).findByCalendarPatientLoginAndDate(anyString(), any());
     }
 
     @Test
@@ -60,7 +60,7 @@ class DailyMenuServiceTest {
 
     @Test
     void findByDateTest() {
-        when(repository.findByCalendarPacjentLoginAndDate(any(), any())).thenReturn(Optional.of(new DailyMenu()));
+        when(repository.findByCalendarPatientLoginAndDate(any(), any())).thenReturn(Optional.of(new DailyMenu()));
 
         var date = LocalDate.now();
 
@@ -68,7 +68,7 @@ class DailyMenuServiceTest {
 
         assertEquals(date, menu.getDate());
 
-        verify(repository).findByCalendarPacjentLoginAndDate(any(), any());
+        verify(repository).findByCalendarPatientLoginAndDate(any(), any());
     }
 
     @Test
@@ -76,17 +76,17 @@ class DailyMenuServiceTest {
 
         assertThrows(NullPointerException.class, () -> dailyMenuService.findByDate(null, "userName"));
 
-        verify(repository, never()).findByCalendarPacjentLoginAndDate(anyString(),isNull());
+        verify(repository, never()).findByCalendarPatientLoginAndDate(anyString(),isNull());
     }
 
     @Test
     void findNullUsersDailyMenuTest() {
-        when(repository.findByCalendarPacjentLoginAndDate(isNull(), any())).thenReturn(Optional.of(new DailyMenu()));
+        when(repository.findByCalendarPatientLoginAndDate(isNull(), any())).thenReturn(Optional.of(new DailyMenu()));
         var date = LocalDate.now();
         var menu = dailyMenuService.findByDate(date, null);
 
         assertEquals(date, menu.getDate());
 
-        verify(repository, times(1)).findByCalendarPacjentLoginAndDate(isNull(), any());
+        verify(repository, times(1)).findByCalendarPatientLoginAndDate(isNull(), any());
     }
 }

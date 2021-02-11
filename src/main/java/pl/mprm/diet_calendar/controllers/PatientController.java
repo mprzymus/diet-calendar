@@ -6,8 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.mprm.diet_calendar.dao.MealRepository;
-import pl.mprm.diet_calendar.model.Posilek;
-import pl.mprm.diet_calendar.model.Skladnik;
+import pl.mprm.diet_calendar.model.Meal;
 import pl.mprm.diet_calendar.service.DailyMenuService;
 import pl.mprm.diet_calendar.service.UserService;
 
@@ -38,7 +37,7 @@ public class PatientController {
         var userName = userService.getUsername();
         userController.addUserDataToModel(model);
         var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), null);
-        var mealsAsList = new ArrayList<>(menu.getPosilki());
+        var mealsAsList = new ArrayList<>(menu.getMeals());
         Collections.sort(mealsAsList);
         model.addAttribute("meals", mealsAsList);
         addDateToModel(model, year, month, day);
@@ -59,17 +58,17 @@ public class PatientController {
 
     @PostMapping("/calendar/{year}/{month}/{day}/edit")
     public String editMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
-                           @ModelAttribute("meal") @Valid Posilek meal) {
+                           @ModelAttribute("meal") @Valid Meal meal) {
         var menu = dailyMenuService.findByDate(LocalDate.of(year, month, day), null);
         if (meal.getId() != null) {
-            var toUpdateOptional = menu.getPosilki().stream()
+            var toUpdateOptional = menu.getMeals().stream()
                     .filter(saved -> saved.getId().equals(meal.getId())).findAny();
-            toUpdateOptional.ifPresent(element -> menu.getPosilki().remove(element));
+            toUpdateOptional.ifPresent(element -> menu.getMeals().remove(element));
         }
         //TODO TIGHT NEW MENU WITH CALENDAR
         //meal.getSkladniki().forEach(skl -> skl.setDanie(meal));
         meal.setDailyMenu(menu);
-        menu.getPosilki().add(meal);
+        menu.getMeals().add(meal);
         dailyMenuService.save(menu);
         return "redirect:/patient/calendar/" + year + "/" + month + "/" + day;
     }
@@ -83,7 +82,7 @@ public class PatientController {
 
     @PostMapping("/calendar/{year}/{month}/{day}/new")
     public String addMeal(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day,
-                          @ModelAttribute("meal") @Valid Posilek meal) {
+                          @ModelAttribute("meal") @Valid Meal meal) {
         return editMeal(year, month, day, meal);
     }
 
@@ -102,7 +101,7 @@ public class PatientController {
 
     @GetMapping("/calendar/{year}/{month}/{day}/new")
     public String showNewMeal(Model model, @PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day) {
-        var meal = new Posilek();
+        var meal = new Meal();
         addDateToModel(model, year, month, day);
         model = userController.addUserDataToModel(model);
         model.addAttribute("meal", meal);

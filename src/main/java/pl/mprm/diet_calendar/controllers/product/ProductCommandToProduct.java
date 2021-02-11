@@ -3,8 +3,8 @@ package pl.mprm.diet_calendar.controllers.product;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import pl.mprm.diet_calendar.model.product_data.Makroskladnik;
-import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.MacroElement;
+import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import pl.mprm.diet_calendar.model.product_data.Product;
 
 import java.util.Arrays;
@@ -20,20 +20,20 @@ public class ProductCommandToProduct implements Converter<ProductDto, Product> {
     public Product convert(ProductDto source) {
         var product = new Product();
         product.setId(source.getId());
-        product.setGramatura(source.getGramatura());
-        product.setName(source.getNazwa());
-        product.setOpis(source.getOpis());
-        product.setCzyPelnowartosciowy(source.getCzyPelnowartosciowy());
-        product.setKalorycznosc(source.getKalorycznosc());
-        if (source.getMakroskladniki() != null && !source.getMakroskladniki().isBlank()) {
-            var macros = toMap(source.getMakroskladniki(), this::createMacroElement);
+        product.setGrams(source.getGrams());
+        product.setName(source.getName());
+        product.setDescription(source.getDescription());
+        product.setIsNutritious(source.getIsNutritious());
+        product.setCalories(source.getCalories());
+        if (source.getMacroElements() != null && !source.getMacroElements().isBlank()) {
+            var macros = toMap(source.getMacroElements(), this::createMacroElement);
             macros.forEach(macro -> macro.setProduct(product));
-            product.setMakroskladniki(macros);
+            product.setMacroElements(macros);
         }
-        if (source.getMikroskladniki() != null && !source.getMikroskladniki().isBlank()) {
-            var micros = toMap(source.getMikroskladniki(), this::createMicroElement);
+        if (source.getMicroElements() != null && !source.getMicroElements().isBlank()) {
+            var micros = toMap(source.getMicroElements(), this::createMicroElement);
             micros.forEach(micro -> micro.setProduct(product));
-            product.setMikroskladniki(micros);
+            product.setMicroElements(micros);
         }
         return product;
     }
@@ -45,18 +45,18 @@ public class ProductCommandToProduct implements Converter<ProductDto, Product> {
                 .collect(Collectors.toSet());
     }
 
-    private Makroskladnik createMacroElement(String[] str) {
+    private MacroElement createMacroElement(String[] str) {
         checkSize(str);
-        var toReturn = new Makroskladnik();
-        toReturn.setIlosc(Double.parseDouble(str[1]));
-        toReturn.setNazwa(str[0]);
+        var toReturn = new MacroElement();
+        toReturn.setAmount(Double.parseDouble(str[1]));
+        toReturn.setName(str[0]);
         return toReturn;
     }
-    private Mikroskladnik createMicroElement(String[] str) {
+    private MicroElement createMicroElement(String[] str) {
         checkSize(str);
-        var toReturn = new Mikroskladnik();
-        toReturn.setIlosc(Double.parseDouble(str[1]));
-        toReturn.setNazwa(str[0]);
+        var toReturn = new MicroElement();
+        toReturn.setAmount(Double.parseDouble(str[1]));
+        toReturn.setName(str[0]);
         return toReturn;
     }
 

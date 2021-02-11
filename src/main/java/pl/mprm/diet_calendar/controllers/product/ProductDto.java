@@ -11,23 +11,23 @@ import javax.validation.constraints.NotNull;
 public class ProductDto {
 
     private Long id;
-    private String makroskladniki;
-    private String mikroskladniki;
+    private String macroElements;
+    private String microElements;
 
     @NotNull
     @Min(0)
-    private Double kalorycznosc;
+    private Double calories;
 
     @NotBlank
     @NotEmpty
-    private String nazwa;
+    private String name;
 
     @NotNull
     @Min(0)
-    private Double gramatura;
+    private Double grams;
 
     @NotEmpty
-    private String opis;
+    private String description;
 
-    private Boolean czyPelnowartosciowy;
+    private Boolean isNutritious;
 }

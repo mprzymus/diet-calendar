@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import pl.mprm.diet_calendar.dao.ProductRepository;
-import pl.mprm.diet_calendar.model.product_data.Mikroskladnik;
+import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import pl.mprm.diet_calendar.model.product_data.Product;
 
 @Profile("dev")
@@ -22,22 +22,22 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent event) {
         log.info("Adding data to db");
         var product = new Product();
-        product.setOpis("desc");
+        product.setDescription("desc");
         product.setName("name");
-        product.setCzyPelnowartosciowy(true);
-        product.setKalorycznosc(10.0);
-        product.setGramatura(10.0);
+        product.setIsNutritious(true);
+        product.setCalories(10.0);
+        product.setGrams(10.0);
 
-        var micro = new Mikroskladnik();
-        micro.setNazwa("micro");
-        micro.setIlosc(10.4);
+        var micro = new MicroElement();
+        micro.setName("micro");
+        micro.setAmount(10.4);
         micro.setProduct(product);
-        var micro2 = new Mikroskladnik();
-        micro2.setNazwa("micro2");
-        micro2.setIlosc(1.4);
+        var micro2 = new MicroElement();
+        micro2.setName("micro2");
+        micro2.setAmount(1.4);
         micro2.setProduct(product);
-        product.getMikroskladniki().add(micro);
-        product.getMikroskladniki().add(micro2);
+        product.getMicroElements().add(micro);
+        product.getMicroElements().add(micro2);
         repository.save(product);
     }
 }

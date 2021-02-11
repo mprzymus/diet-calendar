@@ -45,13 +45,13 @@
         <div class="form-group">
             <input type="hidden" class="form-control" th:value="*{id}"  id="id" name="id"/>
             <label for="godzinaPosilku">Godzina</label>
-            <input type="number" class="form-control" th:value="*{godzinaPosilku}"  id="godzinaPosilku" name="godzinaPosilku" min="0" max="23" required/>
+            <input type="number" class="form-control" th:value="*{hour}"  id="godzinaPosilku" name="godzinaPosilku" min="0" max="23" required/>
             <label for="minutaPosilku">Minuta</label>
-            <input type="number" class="form-control" th:value="*{minutaPosilku}" id="minutaPosilku" name="minutaPosilku" min="0" max="59" required/>
+            <input type="number" class="form-control" th:value="*{minute}" id="minutaPosilku" name="minutaPosilku" min="0" max="59" required/>
             <label for="name">Nazwa</label>
             <input type="text" class="form-control" th:value="*{name}" id="name" name="name" required/>
             <label for="rodzajPosilku">Rodzaj posiłku</label>
-            <select type="text" class="form-control" th:value="*{rodzajPosilku}" id="rodzajPosilku" name="rodzajPosilku" required>
+            <select type="text" class="form-control" th:value="*{mealType}" id="rodzajPosilku" name="rodzajPosilku" required>
                 <option>Sniadanie</option>
                 <option>Obiad</option>
                 <option>Kolacja</option>
@@ -60,7 +60,7 @@
                 <option>Przekaska</option>
             </select>
             <label for="kalorycznosc">Kaloryczność</label>
-            <input type="text" class="form-control" th:value="*{kalorycznosc}" id="kalorycznosc" name="kalorycznosc" required/>
+            <input type="text" class="form-control" th:value="*{calories}" id="kalorycznosc" name="kalorycznosc" required/>
             <br>
             <input type="submit" class="btn btn-info" value="Submit"/>
         </div>

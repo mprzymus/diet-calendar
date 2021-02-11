@@ -12,23 +12,19 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Jadlospis")
+@Table
 public class DailyMenu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne(targetEntity = Calendar.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "kalendarzid")
+	@JoinColumn(name = "calendar_id")
 	private Calendar calendar;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyMenu", fetch = FetchType.EAGER)
-	private Set<Posilek> posilki = new HashSet<>();
+	private Set<Meal> meals = new HashSet<>();
 
-	@Column(name = "data")
+	@Column
 	private LocalDate date;
-
-	@Column(name = "deficytKaloryczny")
-	private Double deficytKaloryczny;
-
 }
