@@ -78,4 +78,5 @@ class ProductToProductDtoTest {
         assertTrue(command.getMicroElements().contains(micro1AsString));
         assertTrue(command.getMicroElements().contains(micro2AsString));
     }
+
 }
