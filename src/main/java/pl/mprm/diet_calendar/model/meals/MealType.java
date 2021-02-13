@@ -15,6 +15,9 @@ public enum MealType {
 
 	@Override
 	public String toString() {
-		return converter.convert(this);
+		if (converter != null)
+			return converter.convert(this);
+		else
+			return super.toString();
 	}
 }
