@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.mprm.diet_calendar.dao.MealRepository;
-import pl.mprm.diet_calendar.model.Meal;
+import pl.mprm.diet_calendar.model.meals.Meal;
 import pl.mprm.diet_calendar.service.DailyMenuService;
 import pl.mprm.diet_calendar.service.UserService;
 

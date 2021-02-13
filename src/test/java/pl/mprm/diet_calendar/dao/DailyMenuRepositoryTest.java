@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.mprm.diet_calendar.model.Calendar;
-import pl.mprm.diet_calendar.model.DailyMenu;
+import pl.mprm.diet_calendar.model.meals.DailyMenu;
 import pl.mprm.diet_calendar.model.Patient;
 
 import java.time.LocalDate;

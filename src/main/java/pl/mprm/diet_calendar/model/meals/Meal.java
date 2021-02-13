@@ -1,6 +1,7 @@
-package pl.mprm.diet_calendar.model;
+package pl.mprm.diet_calendar.model.meals;
 
 import lombok.*;
+import pl.mprm.diet_calendar.model.Ingredient;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;

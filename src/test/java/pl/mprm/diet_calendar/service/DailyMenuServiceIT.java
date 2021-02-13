@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
-import pl.mprm.diet_calendar.model.DailyMenu;
-import pl.mprm.diet_calendar.model.Meal;
+import pl.mprm.diet_calendar.model.meals.DailyMenu;
+import pl.mprm.diet_calendar.model.meals.Meal;
 
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;

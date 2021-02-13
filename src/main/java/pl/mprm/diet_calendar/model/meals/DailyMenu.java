@@ -1,6 +1,7 @@
-package pl.mprm.diet_calendar.model;
+package pl.mprm.diet_calendar.model.meals;
 
 import lombok.*;
+import pl.mprm.diet_calendar.model.Calendar;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ public class DailyMenu {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(targetEntity = Calendar.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = pl.mprm.diet_calendar.model.Calendar.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "calendar_id")
 	private Calendar calendar;
 

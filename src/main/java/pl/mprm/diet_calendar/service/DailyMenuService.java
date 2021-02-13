@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mprm.diet_calendar.dao.DailyMenuRepository;
-import pl.mprm.diet_calendar.model.DailyMenu;
-import pl.mprm.diet_calendar.model.Meal;
+import pl.mprm.diet_calendar.model.meals.DailyMenu;
+import pl.mprm.diet_calendar.model.meals.Meal;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
