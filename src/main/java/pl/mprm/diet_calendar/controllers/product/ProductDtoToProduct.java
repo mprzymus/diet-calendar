@@ -13,7 +13,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-public class ProductCommandToProduct implements Converter<ProductDto, Product> {
+public class ProductDtoToProduct implements Converter<ProductDto, Product> {
 
     @Synchronized
     @Override

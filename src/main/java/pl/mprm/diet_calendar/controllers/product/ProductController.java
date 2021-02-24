@@ -58,7 +58,7 @@ public class ProductController {
                 attributes.addFlashAttribute("duplicated", messageConfiguration.getDuplicatedMessage());
             } else {
                 try {
-                    productService.saveCommand(product);
+                    log.info("Saved product id: {}", productService.saveCommand(product).getId().toString());
                 } catch (IllegalArgumentException ex) {
                     attributes.addFlashAttribute("invalid_format", messageConfiguration.getInvalidFormat());
                 }

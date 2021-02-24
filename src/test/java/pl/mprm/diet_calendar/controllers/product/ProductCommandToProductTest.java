@@ -7,7 +7,7 @@ import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCommandToProductTest {
-    private final ProductCommandToProduct tested = new ProductCommandToProduct();
+    private final ProductDtoToProduct tested = new ProductDtoToProduct();
 
     @Test
     void nullElementsTest() {
