@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import pl.mprm.diet_calendar.dao.DailyMenuRepository;
+import pl.mprm.diet_calendar.repositories.DailyMenuRepository;
 import pl.mprm.diet_calendar.model.meals.DailyMenu;
 import pl.mprm.diet_calendar.model.meals.Meal;
 

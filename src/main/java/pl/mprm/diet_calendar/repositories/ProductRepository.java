@@ -1,4 +1,4 @@
-package pl.mprm.diet_calendar.dao;
+package pl.mprm.diet_calendar.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

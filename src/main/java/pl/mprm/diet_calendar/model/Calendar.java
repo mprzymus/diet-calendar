@@ -2,6 +2,7 @@ package pl.mprm.diet_calendar.model;
 
 import lombok.*;
 import pl.mprm.diet_calendar.model.meals.DailyMenu;
+import pl.mprm.diet_calendar.model.users.Patient;
 
 import javax.persistence.*;
 import java.util.*;

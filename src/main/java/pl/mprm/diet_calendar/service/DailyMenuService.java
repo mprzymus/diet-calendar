@@ -3,7 +3,7 @@ package pl.mprm.diet_calendar.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.mprm.diet_calendar.dao.DailyMenuRepository;
+import pl.mprm.diet_calendar.repositories.DailyMenuRepository;
 import pl.mprm.diet_calendar.model.meals.DailyMenu;
 import pl.mprm.diet_calendar.model.meals.Meal;
 

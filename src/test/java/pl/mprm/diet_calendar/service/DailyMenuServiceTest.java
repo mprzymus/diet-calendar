@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.mprm.diet_calendar.dao.DailyMenuRepository;
+import pl.mprm.diet_calendar.repositories.DailyMenuRepository;
 import pl.mprm.diet_calendar.model.meals.DailyMenu;
 
 import java.time.DateTimeException;

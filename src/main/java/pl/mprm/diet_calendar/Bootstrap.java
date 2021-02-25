@@ -5,10 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import pl.mprm.diet_calendar.dao.ProductRepository;
+import pl.mprm.diet_calendar.model.users.Dietitian;
+import pl.mprm.diet_calendar.model.users.Patient;
+import pl.mprm.diet_calendar.repositories.DietitianRepository;
+import pl.mprm.diet_calendar.repositories.ProductRepository;
 import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import pl.mprm.diet_calendar.model.product_data.Product;
+import pl.mprm.diet_calendar.repositories.UserRepository;
 
 @Profile("dev")
 @Slf4j
@@ -17,9 +22,28 @@ import pl.mprm.diet_calendar.model.product_data.Product;
 public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final ProductRepository repository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        addProducts();
+        addUsers();
+    }
+
+    private void addUsers() {
+        var dietitian = new Dietitian();
+        dietitian.setLogin("diet");
+        dietitian.setPassword(passwordEncoder.encode("pass"));
+        userRepository.save(dietitian);
+
+        var patient = new Patient();
+        patient.setLogin("user");
+        patient.setPassword(passwordEncoder.encode("pass"));
+        userRepository.save(patient);
+    }
+
+    private void addProducts() {
         log.info("Adding data to db");
         var product = new Product();
         product.setDescription("desc");

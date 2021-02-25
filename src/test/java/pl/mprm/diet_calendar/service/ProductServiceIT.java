@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-import pl.mprm.diet_calendar.dao.ProductRepository;
+import pl.mprm.diet_calendar.repositories.ProductRepository;
 import pl.mprm.diet_calendar.model.product_data.MacroElement;
 import pl.mprm.diet_calendar.model.product_data.MicroElement;
 import pl.mprm.diet_calendar.model.product_data.Product;

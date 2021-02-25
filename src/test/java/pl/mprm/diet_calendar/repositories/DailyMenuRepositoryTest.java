@@ -1,4 +1,4 @@
-package pl.mprm.diet_calendar.dao;
+package pl.mprm.diet_calendar.repositories;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.mprm.diet_calendar.model.Calendar;
 import pl.mprm.diet_calendar.model.meals.DailyMenu;
-import pl.mprm.diet_calendar.model.Patient;
+import pl.mprm.diet_calendar.model.users.Patient;
 
 import java.time.LocalDate;
 

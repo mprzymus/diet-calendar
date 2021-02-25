@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pl.mprm.diet_calendar.dao.ProductRepository;
+import pl.mprm.diet_calendar.repositories.ProductRepository;
 import pl.mprm.diet_calendar.model.product_data.Product;
 
 import java.util.Collections;
